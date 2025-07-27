@@ -111,9 +111,10 @@ app.get("/get-Signup", function (req, resp) {
 
     if (emailid != "" && pwd != "" && (utype == "Player" || utype == "Organizer")) {
         if (regex.test(emailid) == true && regexpwd.test(pwd) == true && (utype == "Player" || utype == "Organizer")) {
-            mySqlVen.query("insert into users values(?,?,?,current_date(),1)", [emailid, pwd, utype], function (errKuch, allRecords) {
+            mySqlVen.query("insert into users values(?,?,?,current_date(),1)", [emailid, pwd, utype], function (errKuch,allRecords) {
+          
                 if (errKuch == null) {
-                resp.send(allRecords[0].utype);
+                resp.send(utype);
                 }
                 else
                     resp.send(errKuch.message);
