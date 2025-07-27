@@ -105,15 +105,13 @@ app.get("/get-Signup", function (req, resp) {
     let emailid = req.query.txtEmail;
     let regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     let regexpwd = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}/;
-    let fname = req.query.fn;
-    let lname=  req.query.ln;
-    let full =  req.query.full;
+
     let pwd = req.query.txtPwd;
     let utype = req.query.utype;
 
-    if (fname!="" && lname!="" && emailid != "" && pwd != "" && (utype == "Player" || utype == "Organizer")) {
+    if (emailid != "" && pwd != "" && (utype == "Player" || utype == "Organizer")) {
         if (regex.test(emailid) == true && regexpwd.test(pwd) == true && (utype == "Player" || utype == "Organizer")) {
-            mySqlVen.query("insert into users values(?,?,?,?,?,?,current_date(),1)", [fname,lname,full,emailid, pwd, utype], function (errKuch, allRecords) {
+            mySqlVen.query("insert into users values(?,?,?,current_date(),1)", [emailid, pwd, utype], function (errKuch, allRecords) {
                 if (errKuch == null) {
                 resp.send(allRecords[0].utype);
                 }

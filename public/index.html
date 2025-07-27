@@ -418,10 +418,14 @@
     .btn-close {
       filter: brightness(0) invert(1);
     }
+
+    main {
+      flex: 1;
+    }
   </style>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
   <div id="waiting">
     <i class="fa-solid fa-spinner fa-spin-pulse"></i>
   </div>
@@ -450,362 +454,368 @@
       </div>
     </div>
   </nav>
-  <!-- Hero Section with Carousel -->
-  <div id="home" class="section p-0 mb-5">
-    <div id="heroCarousel" class="carousel slide mb-5" data-bs-ride="carousel" data-bs-interval="3000">
-      <div class="carousel-inner mb-5 " style="height:inherit;">
+  <main class="container py-4">
+    <!-- Hero Section with Carousel -->
+    <div id="home" class="section p-0 mb-5">
+      <div id="heroCarousel" class="carousel slide mb-5" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-inner mb-5 " style="height:inherit;">
 
-        <div class="carousel-item active">
-          <img src="pics/fbb.jpg" class="d-block w-100 object-fit-contain" style="height: 100%;" alt="Football Match">
-        </div>
-
-        <div class="carousel-item">
-          <img src="pics/hoc.jpg" class="d-block w-100 object-fit-contain" style="height: 100%;"
-            alt="Hockey Tournament">
-        </div>
-
-        <div class="carousel-item">
-          <img src="pics/ cric.jpg" class="d-block w-100 object-fit-contain" style="height: 100%;" alt="Cricket Match">
-        </div>
-
-        <div class="carousel-item">
-          <img src="pics/basket.jpg" class="d-block w-100 object-fit-contain" style="height: 100%;"
-            alt="Basketball Game">
-        </div>
-      </div>
-
-      <!-- Carousel Controls -->
-      <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </button>
-
-      <!-- Overlayed Welcome Text -->
-      <!-- Overlayed Welcome Text -->
-      <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 p-4 rounded-4 shadow-lg">
-        <h1 class="fw-bold display-5 text-white">Gear Up for Glory</h1>
-        <p class="fs-5 text-light">
-          Enter the world of <span class="text-primary fw-semibold">Lanceix</span> — where passion meets <span
-            class="text-warning">challenges.</span>
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Our Services Section -->
-  <!-- <section id="services" class="section bg-light text-center py-5"> -->
-  <div class="container" id="services">
-    <div class="mt-3 mb-3">
-      <center>
-        <h2 class="  text-light ">Our Services</h2>
-      </center>
-    </div>
-    <div class="row g-4">
-
-      <!-- Card 1: Tournaments -->
-      <div class="col-md-3">
-        <div class="card  shadow-sm">
-          <img src="pics/f1os.avif" class="card-img-top" alt="Tournaments" style="width: 100%;height: 250px;">
-          <div class="card-body">
-            <h5 class="card-title">Tournaments</h5>
-            <p class="card-text">Join competitive leagues in Football, Cricket, Basketball, and more. Show your physical
-              and strategic power!</p>
+          <div class="carousel-item active">
+            <img src="pics/fbb.jpg" class="d-block w-100 object-fit-contain" style="height: 100%;" alt="Football Match">
           </div>
-        </div>
-      </div>
 
-      <!-- Card 2: Organizers -->
-      <div class="col-md-3">
-        <div class="card  shadow-sm">
-          <img src="pics/f2os.jpg" class="card-img-top" style="width: 100%;height: 250px;" alt="Organizers">
-          <div class="card-body">
-            <h5 class="card-title">Organizers</h5>
-            <p class="card-text">Launch & manage tournaments with tools to schedule matches, manage teams, and promote
-              sports events.</p>
+          <div class="carousel-item">
+            <img src="pics/hoc.jpg" class="d-block w-100 object-fit-contain" style="height: 100%;"
+              alt="Hockey Tournament">
           </div>
-        </div>
-      </div>
 
-      <!-- Card 3: Sports Persons -->
-      <div class="col-md-3">
-        <div class="card  shadow-sm">
-          <img src="pics/f3os.webp" class="card-img-top" style="width: 100%;height: 250px;" alt="Sports Persons">
-          <div class="card-body">
-            <h5 class="card-title">Sports Persons</h5>
-            <p class="card-text">Find opportunities to compete, grow your presence, and connect with coaches, teams, and
-              audiences.</p>
+          <div class="carousel-item">
+            <img src="pics/ cric.jpg" class="d-block w-100 object-fit-contain" style="height: 100%;"
+              alt="Cricket Match">
           </div>
-        </div>
-      </div>
 
-      <!-- Card 4: Mind Athletes -->
-      <div class="col-md-3">
-        <div class="card   shadow-sm">
-          <img src="pics/ f4os.jpeg" class="card-img-top" style="width: 100%;height: 250px;" alt="Mind Athletes">
-          <div class="card-body">
-            <h5 class="card-title">Mind Athletes</h5>
-            <p class="card-text">Join chess, quiz, memory challenges. Train your focus and strategy with global thinkers
-              and champions.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-
-  <!-- Mission Section -->
-  <div class="container my-5 mt-3" id="mission">
-    <div class="mt-5 mb-3">
-      <center>
-        <h2>Our Mission</h2>
-      </center>
-    </div>
-    <div class="row">
-      <div class="col-md-6 ">
-        <img src="pics/ omm.webp" class="img-fluid" alt="Mission">
-      </div>
-      <div class="col-md-5 d-flex flex-column justify-content-center">
-        <p>At Lanceix, we aim to bridge physical and intellectual gaming. From ground-level matches to strategic board
-          games, we empower users with tools, tournaments, and tech-powered management.</p>
-        <p>We celebrate strength, endurance, coordination, and critical thinking — the essence of all great
-          sportspeople. Our mission is to give equal platforms to athletes and minds alike.</p>
-        <p>Be it a football field or a chessboard — we bring it under one roof.</p>
-      </div>
-    </div>
-
-
-    <!-- Developers Section -->
-    <div class="container my-5" id="developers">
-      <div class="text-center mb-5">
-        <h2 class="fw-bold text-white display-6">Meet the Developers</h2>
-        <p class="text-#F5FFFA">The minds behind <span class="text-info fw-semibold">Lanceix</span></p>
-      </div>
-
-      <div class="row justify-content-center g-4">
-
-        <!-- Mentor Card -->
-
-        <div class="col-md-4">
-          <div class="card bg-gradient bg-dark text-light text-center p-4 shadow-lg border-0 rounded-4 h-100">
-            <img src="pics/c5ea308c-786b-4b37-869f-3dda21b63598.JPG"
-              class="rounded-circle mx-auto mt-2 shadow-sm border border-secondary" width="100" height="100"
-              alt="Mentor">
-
-            <h5 class="mt-3 fw-semibold text-#F5FFFA">Under the Guidance of</h5>
-            <p class="text-white-50 mb-1 fs-5 fw-medium">Rajesh Bansal Sir</p>
-
-            <p class="text-light small mb-1">Mentor, Guide & Support System</p>
-            <p class="text-light small">Author of <em>'Real Java'</em> — inspiring generations with knowledge and
-              clarity.</p>
-
-            <hr class="text-secondary w-75 mx-auto my-2">
-
-            <p class="mb-1">
-              <i class="fas fa-envelope text-warning me-2"></i>
-              <a href="mailto:rajeshbansal@example.com" class="text-decoration-none text-light"> bcebti@gmail.com </a>
-            </p>
-            <p>
-              <i class="fas fa-phone text-success me-2"></i>
-              <span class="text-light">+91-9872246056</span>
-            </p>
+          <div class="carousel-item">
+            <img src="pics/basket.jpg" class="d-block w-100 object-fit-contain" style="height: 100%;"
+              alt="Basketball Game">
           </div>
         </div>
 
-        <!-- Developer Card -->
-        <div class="col-md-4">
-          <div class="card bg-gradient bg-dark text-light text-center p-4 shadow-lg border-0 rounded-4 h-100">
-            <img src="pics/BEFAAA42-D145-4DE0-8BA6-FE14422A24EF_1_201_a.jpeg" class="rounded-circle mx-auto mt-2  "
-              width="100" height="100" alt="Developer">
-            <h5 class="mt-3 fw-semibold text-#F5FFFA">Developed By</h5>
-            <p class="text-white-50 fs-5 mb-1 fw-medium">Amit Garg</p>
-            <p class="small text-light px-3">
-              Bridging creativity and code with passion and precision.<br>
-              From smooth frontends to robust backend logic — Amit crafted <span
-                class="text-info fw-semibold">Lanceix</span> with heart, hustle, and vision.
-            </p>
-            <div class="mt-1">
-              <i class="fab fa-html5 text-danger me-2"></i>
-              <i class="fab fa-css3-alt text-primary me-2"></i>
-              <i class="fab fa-js text-warning me-2"></i>
-              <i class="fab fa-node text-success me-2"></i>
-              <i class="fas fa-database text-info me-2"></i>
-            </div>
-          </div>
-        </div>
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
 
+        <!-- Overlayed Welcome Text -->
+        <!-- Overlayed Welcome Text -->
+        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 p-4 rounded-4 shadow-lg">
+          <h1 class="fw-bold display-5 text-white">Gear Up for Glory</h1>
+          <p class="fs-5 text-light">
+            Enter the world of <span class="text-primary fw-semibold">Lanceix</span> — where passion meets <span
+              class="text-warning">challenges.</span>
+          </p>
+        </div>
       </div>
     </div>
 
-    <!-- Reach Us Section -->
-    <div class="container my-5" id="contact">
-      <div class="text-center mb-4">
-        <h2 class="fw-bold text-white">Reach Us</h2>
-        <p class="text-secondary">Let’s connect and grow together</p>
+    <!-- Our Services Section -->
+    <!-- <section id="services" class="section bg-light text-center py-5"> -->
+    <div class="container" id="services">
+      <div class="mt-3 mb-3">
+        <center>
+          <h2 class="  text-light ">Our Services</h2>
+        </center>
       </div>
-
       <div class="row g-4">
 
-        <!-- Contact Info -->
-        <div class="col-md-4">
-          <div class="bg-dark text-light p-4 rounded-4 shadow-sm h-100">
-            <h5 class="text-info mb-3">Contact Details</h5>
-            <p>
-              <i class="fas fa-envelope text-warning me-2"></i>
-              <a href="mailto:garg2422005@gmail.com" class="text-decoration-none text-light">garg2422005@gmail.com</a>
-            </p>
-            <p>
-              <i class="fas fa-phone text-success me-2"></i>
-              <span class="text-light">+91-9779936834</span>
-            </p>
-            <p>
-              <i class="fab fa-instagram text-danger me-2"></i>
-              <a href="https://www.instagram.com/amit_garg_024" target="_blank"
-                class="text-decoration-none text-light">Instagram</a>
-            </p>
-            <p>
-              <i class="fab fa-linkedin text-primary me-2"></i>
-              <a href="https://www.linkedin.com/in/amit-garg-76885a2a9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-                target="_blank" class="text-decoration-none text-light">LinkedIn</a>
-            </p>
+        <!-- Card 1: Tournaments -->
+        <div class="col-md-3">
+          <div class="card  shadow-sm">
+            <img src="pics/f1os.avif" class="card-img-top" alt="Tournaments" style="width: 100%;height: 250px;">
+            <div class="card-body">
+              <h5 class="card-title">Tournaments</h5>
+              <p class="card-text">Join competitive leagues in Football, Cricket, Basketball, and more. Show your
+                physical
+                and strategic power!</p>
+            </div>
           </div>
         </div>
 
-        <!-- Google Maps -->
-        <div class="col-md-8">
-          <div class="rounded-4 overflow-hidden shadow-sm h-100">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3444.2572457665788!2d75.2357250757785!3d30.315199905691262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3910c405649b9c6f%3A0x619d2af5acd9a5c1!2sCollege%20of%20Engineering%20%26%20Management%2C%20Punjabi%20University%20Neighbourhood%20Campus%2C%20Rampura%20Phul!5e0!3m2!1sen!2sin!4v1753601809866!5m2!1sen!2sin"
-              width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <!-- Card 2: Organizers -->
+        <div class="col-md-3">
+          <div class="card  shadow-sm">
+            <img src="pics/f2os.jpg" class="card-img-top" style="width: 100%;height: 250px;" alt="Organizers">
+            <div class="card-body">
+              <h5 class="card-title">Organizers</h5>
+              <p class="card-text">Launch & manage tournaments with tools to schedule matches, manage teams, and promote
+                sports events.</p>
+            </div>
+          </div>
+        </div>
 
-            </iframe>
+        <!-- Card 3: Sports Persons -->
+        <div class="col-md-3">
+          <div class="card  shadow-sm">
+            <img src="pics/f3os.webp" class="card-img-top" style="width: 100%;height: 250px;" alt="Sports Persons">
+            <div class="card-body">
+              <h5 class="card-title">Sports Persons</h5>
+              <p class="card-text">Find opportunities to compete, grow your presence, and connect with coaches, teams,
+                and
+                audiences.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Mind Athletes -->
+        <div class="col-md-3">
+          <div class="card   shadow-sm">
+            <img src="pics/ f4os.jpeg" class="card-img-top" style="width: 100%;height: 250px;" alt="Mind Athletes">
+            <div class="card-body">
+              <h5 class="card-title">Mind Athletes</h5>
+              <p class="card-text">Join chess, quiz, memory challenges. Train your focus and strategy with global
+                thinkers
+                and champions.</p>
+            </div>
           </div>
         </div>
 
       </div>
     </div>
-    <footer class="bg-dark text-secondary text-center py-3 mt-5 border-top border-secondary">
-      <small>&copy; 2025 <span class="text-light fw-semibold">Lanceix</span>. All Rights Reserved.</small>
-    </footer>
 
 
+    <!-- Mission Section -->
+    <div class="container my-5 mt-3" id="mission">
+      <div class="mt-5 mb-3">
+        <center>
+          <h2>Our Mission</h2>
+        </center>
+      </div>
+      <div class="row">
+        <div class="col-md-6 ">
+          <img src="pics/ omm.webp" class="img-fluid" alt="Mission">
+        </div>
+        <div class="col-md-5 d-flex flex-column justify-content-center">
+          <p>At Lanceix, we aim to bridge physical and intellectual gaming. From ground-level matches to strategic board
+            games, we empower users with tools, tournaments, and tech-powered management.</p>
+          <p>We celebrate strength, endurance, coordination, and critical thinking — the essence of all great
+            sportspeople. Our mission is to give equal platforms to athletes and minds alike.</p>
+          <p>Be it a football field or a chessboard — we bring it under one roof.</p>
+        </div>
+      </div>
 
 
+      <!-- Developers Section -->
+      <div class="container my-5" id="developers">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold text-white display-6">Meet the Developers</h2>
+          <p class="text-#F5FFFA">The minds behind <span class="text-info fw-semibold">Lanceix</span></p>
+        </div>
 
-    <!-- Signup modal -->
-    <div class="modal fade" tabindex="-1" id="divSignup" style="margin-top: 150px;">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header" style="background: linear-gradient(135deg, #0d1b2a, #1b263b); color: white;">
-            <h5 class="modal-title">Signup Modal</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p>
+        <div class="row justify-content-center g-4">
 
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Email ID</label>
-              <input type="email" class="form-control" id="txtEmail" name="txtEmail" aria-describedby="emailHelp">
-              <span id="errEmail"></span>
+          <!-- Mentor Card -->
+
+          <div class="col-md-4">
+            <div class="card bg-gradient bg-dark text-light text-center p-4 shadow-lg border-0 rounded-4 h-100">
+              <img src="pics/c5ea308c-786b-4b37-869f-3dda21b63598.JPG"
+                class="rounded-circle mx-auto mt-2 shadow-sm border border-secondary" width="100" height="100"
+                alt="Mentor">
+
+              <h5 class="mt-3 fw-semibold text-#F5FFFA">Under the Guidance of</h5>
+              <p class="text-white-50 mb-1 fs-5 fw-medium">Rajesh Bansal Sir</p>
+
+              <p class="text-light small mb-1">Mentor, Guide & Support System</p>
+              <p class="text-light small">Author of <em>'Real Java'</em> — inspiring generations with knowledge and
+                clarity.</p>
+
+              <hr class="text-secondary w-75 mx-auto my-2">
+
+              <p class="mb-1">
+                <i class="fas fa-envelope text-warning me-2"></i>
+                <a href="mailto:rajeshbansal@example.com" class="text-decoration-none text-light"> bcebti@gmail.com </a>
+              </p>
+              <p>
+                <i class="fas fa-phone text-success me-2"></i>
+                <span class="text-light">+91-9872246056</span>
+              </p>
             </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Password</label>
+          </div>
 
-              <!-- Wrap input and eye in a div -->
-              <div style="position: relative;">
-                <input type="password" class="form-control" id="txtPwd" name="txtPwd" style="padding-right: 40px;">
-                <i class="fa-solid fa-eye" id="eye"
-                  style=" position: absolute; top: 50%;right: 12px; transform: translateY(-50%); cursor: pointer;color: #666;pointer-events: all; "></i>
-
+          <!-- Developer Card -->
+          <div class="col-md-4">
+            <div class="card bg-gradient bg-dark text-light text-center p-4 shadow-lg border-0 rounded-4 h-100">
+              <img src="pics/BEFAAA42-D145-4DE0-8BA6-FE14422A24EF_1_201_a.jpeg" class="rounded-circle mx-auto mt-2  "
+                width="100" height="100" alt="Developer">
+              <h5 class="mt-3 fw-semibold text-#F5FFFA">Developed By</h5>
+              <p class="text-white-50 fs-5 mb-1 fw-medium">Amit Garg</p>
+              <p class="small text-light px-3">
+                Bridging creativity and code with passion and precision.<br>
+                From smooth frontends to robust backend logic — Amit crafted <span
+                  class="text-info fw-semibold">Lanceix</span> with heart, hustle, and vision.
+              </p>
+              <div class="mt-1">
+                <i class="fab fa-html5 text-danger me-2"></i>
+                <i class="fab fa-css3-alt text-primary me-2"></i>
+                <i class="fab fa-js text-warning me-2"></i>
+                <i class="fab fa-node text-success me-2"></i>
+                <i class="fas fa-database text-info me-2"></i>
               </div>
-              <span id="errPwd"></span>
             </div>
           </div>
+
+        </div>
+      </div>
+
+      <!-- Reach Us Section -->
+      <div class="container my-5" id="contact">
+        <div class="text-center mb-4">
+          <h2 class="fw-bold text-white">Reach Us</h2>
+          <p class="text-secondary">Let’s connect and grow together</p>
+        </div>
+
+        <div class="row g-4">
+
+          <!-- Contact Info -->
+          <div class="col-md-4">
+            <div class="bg-dark text-light p-4 rounded-4 shadow-sm h-100">
+              <h5 class="text-info mb-3">Contact Details</h5>
+              <p>
+                <i class="fas fa-envelope text-warning me-2"></i>
+                <a href="mailto:garg2422005@gmail.com" class="text-decoration-none text-light">garg2422005@gmail.com</a>
+              </p>
+              <p>
+                <i class="fas fa-phone text-success me-2"></i>
+                <span class="text-light">+91-9779936834</span>
+              </p>
+              <p>
+                <i class="fab fa-instagram text-danger me-2"></i>
+                <a href="https://www.instagram.com/amit_garg_024" target="_blank"
+                  class="text-decoration-none text-light">Instagram</a>
+              </p>
+              <p>
+                <i class="fab fa-linkedin text-primary me-2"></i>
+                <a href="https://www.linkedin.com/in/amit-garg-76885a2a9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                  target="_blank" class="text-decoration-none text-light">LinkedIn</a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Google Maps -->
+          <div class="col-md-8">
+            <div class="rounded-4 overflow-hidden shadow-sm h-100">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3444.2572457665788!2d75.2357250757785!3d30.315199905691262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3910c405649b9c6f%3A0x619d2af5acd9a5c1!2sCollege%20of%20Engineering%20%26%20Management%2C%20Punjabi%20University%20Neighbourhood%20Campus%2C%20Rampura%20Phul!5e0!3m2!1sen!2sin!4v1753601809866!5m2!1sen!2sin"
+                width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+              </iframe>
+            </div>
+          </div>
+
+        </div>
+      </div>
+  </main>
+  <footer class=" bg-dark text-secondary text-center py-3 mt-auto border-top border-secondary">
+    <small>&copy; 2025 <span class="text-light fw-semibold">Lanceix</span>. All Rights Reserved.</small>
+  </footer>
+
+
+
+
+
+  <!-- Signup modal -->
+  <div class="modal fade" tabindex="-1" id="divSignup" style="margin-top: 150px;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background: linear-gradient(135deg, #0d1b2a, #1b263b); color: white;">
+          <h5 class="modal-title">Signup Modal</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email ID</label>
+            <input type="email" class="form-control" id="txtEmail" name="txtEmail" aria-describedby="emailHelp">
+            <span id="errEmail"></span>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+
+            <!-- Wrap input and eye in a div -->
+            <div style="position: relative;">
+              <input type="password" class="form-control" id="txtPwd" name="txtPwd" style="padding-right: 40px;">
+              <i class="fa-solid fa-eye" id="eye"
+                style=" position: absolute; top: 50%;right: 12px; transform: translateY(-50%); cursor: pointer;color: #666;pointer-events: all; "></i>
+
+            </div>
+            <span id="errPwd"></span>
+          </div>
+        </div>
+        <div>
+          <center>
+
+            User-Type:
+            <select name="utype" id="utype" style="background: black;color:white;">
+              <option value="none">Select </option>
+              <option value="Player">Player</option>
+              <option value="Organizer">Organizer</option>
+
+            </select><span id="errutype"></span>
+
+          </center>
+        </div>
+        </p>
+
+        <div class="modal-footer">
+
+          <input type="button" value="Signup" class="btn text-white fw-semibold" id="sendtoserver"
+            style=" width: 90px;  background: linear-gradient(135deg, #0d1b2a, #1b263b); border: none;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- Login Modal -->
+  <div class="modal fade" tabindex="-1" id="divLogin" style="margin-top: 150px;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header  " style="background: linear-gradient(135deg, #0d1b2a, #1b263b); color: white;">
+          <h5 class="modal-title">Login Modal</h5>
+          <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email ID</label>
+            <input type="email" class="form-control" id="txtEmail1" name="txtEmail1" value="">
+            <span id="loginemail"></span>
+
+
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+
+            <!-- Wrap input and eye in a div -->
+            <div style="position: relative;">
+              <input type="text" class="form-control" id="txtPwd1" name="txtPwd1" style="padding-right: 40px;">
+              <i class="fa-solid fa-eye" id="eye1"
+                style=" position: absolute; top: 50%;right: 12px; transform: translateY(-50%); cursor: pointer;color: #666;pointer-events: all; "></i>
+            </div>
+          </div>
+          <span id="loginpwd"></span>
+
           <div>
             <center>
 
-              User-Type:
-              <select name="utype" id="utype" style="background: black;color:white;">
-                <option value="none">Select </option>
-                <option value="Player">Player</option>
-                <option value="Organizer">Organizer</option>
-
-              </select><span id="errutype"></span>
+              <!-- User Type -->
+              <span id="utypeDisplay"></span>
 
             </center>
           </div>
-          </p>
 
-          <div class="modal-footer">
-
-            <input type="button" value="Signup" class="btn text-white fw-semibold" id="sendtoserver"
-              style=" width: 90px;  background: linear-gradient(135deg, #0d1b2a, #1b263b); border: none;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-
-
-    <!-- Login Modal -->
-    <div class="modal fade" tabindex="-1" id="divLogin" style="margin-top: 150px;">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header  " style="background: linear-gradient(135deg, #0d1b2a, #1b263b); color: white;">
-            <h5 class="modal-title">Login Modal</h5>
-            <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-
-
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Email ID</label>
-              <input type="email" class="form-control" id="txtEmail1" name="txtEmail1" value="">
-              <span id="loginemail"></span>
-
-
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Password</label>
-
-              <!-- Wrap input and eye in a div -->
-              <div style="position: relative;">
-                <input type="text" class="form-control" id="txtPwd1" name="txtPwd1" style="padding-right: 40px;">
-                <i class="fa-solid fa-eye" id="eye1"
-                  style=" position: absolute; top: 50%;right: 12px; transform: translateY(-50%); cursor: pointer;color: #666;pointer-events: all; "></i>
-              </div>
-            </div>
-            <span id="loginpwd"></span>
-
-            <div>
-              <center>
-
-                <!-- User Type -->
-                <span id="utypeDisplay"></span>
-
-              </center>
-            </div>
-
-
-          </div>
-
-          <div class="modal-footer">
-            <!-- <span id="chklogin"></span> -->
-            <input type="button" value="Login" class="btn text-white fw-semibold" id="chkwithdb"
-              style="width: 90px;background: linear-gradient(135deg, #0d1b2a, #1b263b); border: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
-
-          </div>
 
         </div>
+
+        <div class="modal-footer">
+          <!-- <span id="chklogin"></span> -->
+          <input type="button" value="Login" class="btn text-white fw-semibold" id="chkwithdb"
+            style="width: 90px;background: linear-gradient(135deg, #0d1b2a, #1b263b); border: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+
+        </div>
+
       </div>
     </div>
+  </div>
 
 
-    </form>
+  </form>
 
 </body>
