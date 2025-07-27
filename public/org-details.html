@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Organizer Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+    function showPrev(fileRef, prevRef) {
+      const [file] = fileRef.files;
+      if (file) {
+        prevRef.src = URL.createObjectURL(file);
+      }
+    }
+
+    function showUer() {
+      let activeUser = localStorage.getItem("activeUser");
+      document.getElementById("txtEmail2").value = activeUser;
+    }
+
+    $(document).ready(function () {
+      $("#sendtosearch").click(function () {
+        let obj = {
+          type: "get",
+          url: "/get-search",
+          data: {
+            txtEmail2: $("#txtEmail2").val(),
+          }
+        };
+
+        $.ajax(obj).then(function (responseJsonAry) {
+          let org = responseJsonAry[0];
+          $("#txtorgn").val(org.orgname);
+          $("#txtregis").val(org.regnumber);
+          $("#txtAddress").val(org.address);
+          $("#txtCity").val(org.city);
+          $("#txtsports").val(org.sports);
+          $("#website").val(org.website);
+          $("#insta").val(org.insta);
+          $("#txtOrghead").val(org.head);
+          $("#txtcontact").val(org.contact);
+          $("#prev").prop("src", org.picurl);
+          $("#otherinfo").val(org.otherinfo);
+        }).fail(function (err) { alert(err.message) })
+      });
+
+      $("#txtEmail2").blur(function () {
+        let obj = {
+          type: "get",
+          url: "/chk-email-org",
+          data: {
+            txtEmail2: $("#txtEmail2").val()
+          }
+        }
+
+        $.ajax(obj).then(function (resp) {
+          if (resp == "Invalid") {
+            if ($("#txtEmail2").val() == "")
+              $("#orgemail").html("Email ID required").removeClass().addClass("text-danger");
+            else
+              $("#orgemail").html("Invalid EmailID").removeClass().addClass("text-danger");
+          } else {
+            $("#orgemail").html("").removeClass();
+          }
+        }).fail(function (err) {
+          alert(err);
+        });
+      });
+    });
+  </script>
+
+  <style>
+    body {
+      background-color: #0d1117;
+      color: #c9d1d9;
+    }
+
+    .form-control,
+    .form-control:focus {
+      background-color: #161b22;
+      color: #c9d1d9;
+      border-color: #30363d;
+    }
+
+    label {
+      color: #58a6ff;
+    }
+
+ 
+    .btn-outline-secondary {
+      color: #8b949e;
+      border-color: #30363d;
+    }
+
+    .btn-outline-secondary:hover {
+      background-color: #30363d;
+      color: #c9d1d9;
+    }
+
+    #header,
+    #footer {
+      width: 100%;
+      line-height: 35px;
+      color: aliceblue;
+      text-align: center;
+      padding: 10px 0;
+      background-color: #0054b4;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #8b949e;
+    }
+
+    img#prev {
+      background-color: #161b22;
+    }
+  </style>
+</head>
+
+<body onload="showUer();">
+  <div id="header">Organizer Details</div>
+  <div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+      <div class="col-md-11">
+        <form class="row g-3" method="post" enctype="multipart/form-data">
+
+          <div class="col-md-6">
+            <label for="txtEmail2" class="form-label">Email ID</label>
+            <input type="email" class="form-control" id="txtEmail2" name="txtEmail2" readonly placeholder="Enter Email" required>
+            <span id="orgemail" name="orgemail"></span>
+          </div>
+          <div class="col-md-3 d-flex align-items-end">
+            <button type="button" class="btn btn-outline-secondary w-100" id="sendtosearch">Search</button>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Organization Name</label>
+            <input type="text" class="form-control" placeholder="Enter Name" id="txtorgn" name="txtorgn">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Registration Number</label>
+            <input type="text" class="form-control" placeholder="Enter Reg. No" id="txtregis" name="txtregis">
+          </div>
+
+          <div class="col-md-8">
+            <label for="inputAddress" class="form-label">Address</label>
+            <input type="text" class="form-control" id="txtAddress" name="txtAddress" placeholder="Street no.,Area,...">
+          </div>
+          <div class="col-md-4">
+            <label for="inputCity" class="form-label">City</label>
+            <input type="text" class="form-control" id="txtCity" name="txtCity" placeholder="Enter City">
+          </div>
+
+          <div class="col-12">
+            <label class="form-label">Deals in Sports</label>
+            <input type="text" class="form-control" id="txtsports" name="txtsports" placeholder="e.g. Cricket, Football">
+          </div>
+
+          <div class="col-md-7">
+            <label class="form-label">Website Link</label>
+            <input type="text" class="form-control" id="website" name="website" placeholder="https://example.com">
+          </div>
+          <div class="col-md-5">
+            <label class="form-label">Instagram Link</label>
+            <input type="text" class="form-control" id="insta" name="insta" placeholder="https://instagram.com/yourpage">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Organization Head</label>
+            <input type="text" class="form-control" id="txtOrghead" name="txtOrghead" placeholder="Enter Name">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Contact Number</label>
+            <input type="text" class="form-control" id="txtcontact" name="txtcontact" placeholder="e.g. 9876543210">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Registration Certificate Pic</label>
+            <input type="file" class="form-control" name="profilePic" id="profilePic" onchange="showPrev(profilePic, prev)">
+          </div>
+          <div class="col-md-6 d-flex align-items-end">
+            <img src="" width="100" height="100" id="prev" class="border rounded" alt="Preview">
+          </div>
+
+          <div class="col-md-8">
+            <label class="form-label">Other Information</label>
+            <input type="text" class="form-control" id="otherinfo" name="otherinfo" placeholder="Leave more information about your Organization" style="height:90px;">
+          </div>
+
+          <div class="col-12 d-flex justify-content-end gap-2 mt-3">
+            <button type="submit" class="btn btn-primary" formaction="/server-org-details">Send to Server</button>
+            <button type="submit" class="btn btn-outline-secondary" formaction="/Modify-details">Modify</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="footer">All Rights reserved @2025</div>
+</body>
+
+</html>
