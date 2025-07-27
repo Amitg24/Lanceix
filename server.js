@@ -156,7 +156,7 @@ app.get("/do-Login", function (req, resp) {
 // check email for signup
 app.get("/chk-email", function (req, resp) {
     let regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    let email = req.query.txtEmail1;
+    let email = req.query.txtEmail;
 
     mySqlVen.query("select * from users where emailid=?", [email], function (err, allRecords) {
         if (allRecords.length == 0 && regex.test(email) == true)
