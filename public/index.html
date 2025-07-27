@@ -72,13 +72,7 @@
 
                   location.href = "dash-organizer.html";
                 }
-                else
-
-                  if (resp == "Admin") {
-                    localStorage.setItem("activeUser", $("#txtEmail").val())
-
-                    location.href = "dash-admin.html";
-                  }
+                
             }
 
           }).fail(function (err) { alert(err.message) })

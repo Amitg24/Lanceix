@@ -116,7 +116,7 @@ app.get("/get-Signup", function (req, resp) {
                 resp.send(allRecords[0].utype);
                 }
                 else
-                    resp.send(err.message);
+                    resp.send(errKuch.message);
             })
         }
         else {
