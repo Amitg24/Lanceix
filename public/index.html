@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins&display=swap" rel="stylesheet">
   <script>
@@ -413,10 +413,12 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="#">
-        <img src="pics/ lobe.png" alt="Lanceix Logo" style="height: 40px;">
-        <span class="ms-2">Lanceix</span>
-      </a>
+
+      <div><a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="pics/ lobe.png" alt="Lanceix Logo" style="height: 40px;">
+          <span class="ms-2">Lanceix</span>
+        </a></div>
+        
       <div class="collapse navbar-collapse justify-content-end">
         <ul class="navbar-nav " style="margin-right: 300px;">
           <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
@@ -425,13 +427,14 @@
           <li class="nav-item"><a class="nav-link" href="#developers">Developers</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Reach Us</a></li>
         </ul>
-
-        <div class="btns">
-          <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#divSignup">Signup</button>
-          <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#divLogin">Login</button>
-        </div>
-
       </div>
+
+      <div class="btns">
+        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#divSignup">Signup</button>
+        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#divLogin">Login</button>
+      </div>
+
+
     </div>
   </nav>
   <main class="container py-4">
