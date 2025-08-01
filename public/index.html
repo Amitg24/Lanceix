@@ -323,13 +323,17 @@
         } */
   </style>
   <style>
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
       .navbar .nav {
-        flex-direction: column !important;
+        flex-direction: column;
       }
 
       .navbar .nav-item {
-        margin: 6px 0;
+        margin-bottom: 0.5rem;
+      }
+
+      .navbar .btn {
+        width: 100%;
       }
     }
   </style>
@@ -432,30 +436,28 @@
     <i class="fa-solid fa-spinner fa-spin-pulse"></i>
   </div>
 
+  <!-- NAvbar -->
+  <nav class="navbar navbar-dark bg-dark py-1 fixed-top">
+    <div class="container-fluid d-flex flex-column flex-md-row justify-content-between align-items-center">
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-dark bg-dark fixed-top py-2">
-    <div
-      class="container d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between">
-
-      <!-- Brand -->
-      <a class="navbar-brand d-flex align-items-center mb-3 mb-md-0">
-        <img src="pics/ lobe.png" alt="Lanceix Logo" style="height: 40px;">
-        <span class="ms-2 fs-4">Lanceix</span>
+      <!-- Logo -->
+      <a class="navbar-brand d-flex align-items-center mb-2 mb-md-0" href="#" style="padding-left: 50px;">
+        <img src="pics/ lobe.png" alt="Lanceix Logo" style="height: 36px;">
+        <span class="ms-2">Lanceix</span>
       </a>
 
-      <!-- Navigation Links -->
-      <ul class="navbar-nav d-flex flex-column flex-md-row align-items-center gap-2 gap-md-4 text-center mb-3 mb-md-0">
-        <li class="nav-item"><a class="nav-link px-2" href="#">Home</a></li>
-        <li class="nav-item"><a class="nav-link px-2" href="#services">Our Services</a></li>
-        <li class="nav-item"><a class="nav-link px-2" href="#mission">Mission</a></li>
-        <li class="nav-item"><a class="nav-link px-2" href="#developers">Developers</a></li>
-        <li class="nav-item"><a class="nav-link px-2" href="#contact">Reach Us</a></li>
+      <!-- Nav Links -->
+      <ul class="nav flex-column flex-md-row text-center text-md-start mb-2 mb-md-0">
+        <li class="nav-item mx-md-2"><a class="nav-link text-light" href="#">Home</a></li>
+        <li class="nav-item mx-md-2"><a class="nav-link text-light" href="#services">Our Services</a></li>
+        <li class="nav-item mx-md-2"><a class="nav-link text-light" href="#mission">Mission</a></li>
+        <li class="nav-item mx-md-2"><a class="nav-link text-light" href="#developers">Developers</a></li>
+        <li class="nav-item mx-md-2"><a class="nav-link text-light" href="#contact">Reach Us</a></li>
       </ul>
 
-      <!-- Auth Buttons -->
-      <div class="d-flex flex-column flex-md-row gap-2 " style="padding: auto;">
-        <button class="btn btn-dark " data-bs-toggle="modal" data-bs-target="#divSignup">Signup</button>
+      <!-- Signup/Login Buttons -->
+      <div class="d-flex gap-2" style="padding-right:70px;">
+        <button class="btn btn-dark  " data-bs-toggle="modal" data-bs-target="#divSignup">Signup</button>
         <button class="btn btn-dark  " data-bs-toggle="modal" data-bs-target="#divLogin">Login</button>
       </div>
 
