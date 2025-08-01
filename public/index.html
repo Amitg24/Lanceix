@@ -414,18 +414,35 @@
     main {
       flex: 1;
     }
-
-    @media (max-width: 991.98px) {
-      .navbar .btn {
-        padding: 4px 12px;
-        font-size: 14px;
+  </style>
+  <style>
+    @keyframes scrollText {
+      0% {
+        transform: translateX(100%);
       }
 
-      .navbar .ms-auto {
-        margin-left: auto !important;
+      100% {
+        transform: translateX(-100%);
       }
     }
+
+    .scrolling-text {
+      white-space: nowrap;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .scrolling-text span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scrollText 10s linear infinite;
+    }
   </style>
+
+  <div class="d-block d-md-none scrolling-text text-white bg-dark bg-opacity-75 py-2 px-3 rounded">
+    <span>👋 Welcome to Lanceix — Explore. Play. Win. 🏆</span>
+  </div>
+
 
 </head>
 
@@ -437,31 +454,30 @@
 
 
   <!--Navbar -->
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top shadow">
-    <div class="container-fluid px-4">
+  <nav class="navbar navbar-dark bg-dark py-2 fixed-top">
+    <div class="container-fluid d-flex flex-column flex-md-row justify-content-between align-items-center">
+
       <!-- Logo -->
-      <a class="navbar-brand d-flex align-items-center" href="#">
+      <a class="navbar-brand d-flex align-items-center mb-2 mb-md-0" href="#" style="padding-left: 4%;">
         <img src="pics/ lobe.png" alt="Lanceix Logo" style="height: 36px;">
-        <span class="ms-2 fw-bold ">Lanceix</span>
+        <span class="ms-2">Lanceix</span>
       </a>
 
-      <!-- Navbar links + buttons -->
-      <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-        <!-- Links -->
-        <ul class="navbar-nav me-lg-3 mb-2 mb-lg-0 d-none d-lg-flex" style="padding-left: 27%;">
-          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#services">Our Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="#mission">Mission</a></li>
-          <li class="nav-item"><a class="nav-link" href="#developers">Developers</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Reach Us</a></li>
-        </ul>
+      <!-- Nav Links -->
+      <ul class="nav flex-column flex-md-row text-center text-md-start mb-2 mb-md-0">
+        <li class="nav-item mx-md-2"><a class="nav-link text-light" href="#">Home</a></li>
+        <li class="nav-item mx-md-2"><a class="nav-link text-light" href="#services">Our Services</a></li>
+        <li class="nav-item mx-md-2"><a class="nav-link text-light" href="#mission">Mission</a></li>
+        <li class="nav-item mx-md-2"><a class="nav-link text-light" href="#developers">Developers</a></li>
+        <li class="nav-item mx-md-2"><a class="nav-link text-light" href="#contact">Reach Us</a></li>
+      </ul>
 
-        <!-- Buttons -->
-        <div class="d-flex gap-2 mt-2 mt-md-0 ms-auto text-center">
-          <button class="btn btn-outline-light " href="#" data-bs-toggle="modal" data-bs-target="#divSignup">Signup</button>
-          <button class="btn btn-primary " href="#" data-bs-toggle="modal" data-bs-target="#divLogin">Login</button>
-        </div>
+      <!-- Signup/Login Buttons -->
+      <div class="d-flex gap-2" style="padding-right: 4%;">
+        <button class="btn btn-dark " data-bs-toggle="modal" data-bs-target="#divSignup">Signup</button>
+        <button class="btn btn-dark " data-bs-toggle="modal" data-bs-target="#divLogin">Login</button>
       </div>
+
     </div>
   </nav>
 
@@ -500,17 +516,26 @@
           <span class="carousel-control-next-icon"></span>
         </button>
 
+
         <!-- Overlayed Welcome Text -->
-        <!-- Overlayed Welcome Text -->
-        <!-- Improved Mobile-Friendly Carousel Caption -->
-        <div class="carousel-caption d-block bg-dark bg-opacity-75 rounded-4 shadow-lg px-3 py-2 text-center">
-          <h1 class="fw-bold fs-3 fs-md-1 text-white">Gear Up for Glory</h1>
+        <!-- Desktop View -->
+        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded-4 shadow-lg px-4 py-3 text-center">
+          <h1 class="fw-bold text-white display-6 display-md-3 mb-2">
+            Gear Up for <span class="text-primary">Glory</span>
+          </h1>
           <p class="fs-6 fs-md-5 text-light mb-0">
-            Enter the world of <span class="text-primary fw-semibold">Lanceix</span> — where passion meets <span
-              class="text-warning">challenges.</span>
+            Enter the world of <span class="text-primary fw-semibold">Lanceix</span> — where <span
+              class="text-warning">passion</span> meets <span class="text-warning">challenge</span>.
+          </p>
+        </div>
+        <!-- Mobile-only Welcome -->
+        <div class="d-block d-md-none text-center py-2 px-3 bg-dark bg-opacity-75 rounded shadow-sm">
+          <p class="mb-0 text-white small fw-semibold">
+            👋 Welcome to <span class="text-primary">Lanceix</span> — Explore, Compete, Win!
           </p>
         </div>
       </div>
+    </div>
     </div>
 
     <!-- Our Services Section -->
