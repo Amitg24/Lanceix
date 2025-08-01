@@ -403,8 +403,6 @@
     main {
       flex: 1;
     }
-
-    
   </style>
 </head>
 
@@ -415,30 +413,27 @@
 
   <!-- Navbar -->
   <!-- Navbar -->
-  <nav class="navbar navbar-dark bg-dark fixed-top">
-    <div class="container">
+  <nav class="navbar navbar-dark bg-dark fixed-top py-2">
+    <div class="container flex-column flex-md-row align-items-start align-items-md-center">
+
       <!-- Brand -->
-      <a class="navbar-brand d-flex align-items-center" href="#">
+      <a class="navbar-brand d-flex align-items-center mb-2 mb-md-0" href="#">
         <img src="pics/ lobe.png" alt="Lanceix Logo" style="height: 40px;">
         <span class="ms-2">Lanceix</span>
       </a>
 
- 
+      <!-- Nav Links -->
+      <ul class="navbar-nav d-flex flex-column flex-md-row text-center gap-2 gap-md-4 mb-2 mb-md-0">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#services">Our Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#mission">Mission</a></li>
+        <li class="nav-item"><a class="nav-link" href="#developers">Developers</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Reach Us</a></li>
+      </ul>
 
-      <!-- Collapsible Links -->
-      <div class="col-12 col-md-4 d-flex justify-content-center justify-content-md-end flex-wrap ">
-        <ul class="navbar-nav me-3 flex-row flex-wrap gap-3">
-          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#services">Our Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="#mission">Mission</a></li>
-          <li class="nav-item"><a class="nav-link" href="#developers">Developers</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Reach Us</a></li>
-        </ul>
-      </div>
-
-      <!-- Buttons inside collapse so they also appear on mobile -->
-      <div class="d-flex" id="trap">
-        <button class="btn btn-dark me-2 " data-bs-toggle="modal" data-bs-target="#divSignup">Signup</button>
+      <!-- Buttons -->
+      <div class="d-flex gap-2">
+        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#divSignup">Signup</button>
         <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#divLogin">Login</button>
       </div>
 
