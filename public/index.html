@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=100px">
+  <meta name="viewport" content="width=400">
   <title>Lanceix - Home</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
@@ -325,12 +325,13 @@
   <style>
     @media (max-width: 767px) {
       .navbar .nav-link {
-        padding: 0.5rem 0;
-        text-align: center;
+        padding: 0.3rem 0.5rem;
+        font-size: 14px;
       }
 
       .navbar .btn {
-        width: 100px;
+        font-size: 14px;
+        padding: 4px 12px;
       }
     }
   </style>
@@ -434,31 +435,32 @@
   </div>
 
   <!-- NAvbar -->
-  <nav class="navbar navbar-dark bg-dark py-1 fixed-top">
-    <div class="container-fluid d-flex flex-column flex-md-row justify-content-between align-items-center">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top py-2">
+    <div class="container-fluid d-flex flex-wrap justify-content-between align-items-center">
 
       <!-- Logo -->
-      <a class="navbar-brand d-flex align-items-center mb-2 mb-md-0" href="#" style="padding-left: 50px;">
-        <img src="pics/ lobe.png" alt="Lanceix Logo" style="height: 36px;">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="pics/lobe.png" alt="Lanceix Logo" style="height: 36px;">
         <span class="ms-2">Lanceix</span>
       </a>
 
-      <!-- Nav Links -->
-      <ul class="nav flex-column flex-md-row text-center text-md-start mb-2 mb-md-0">
-        <li class="nav-item mx-md-2"><a class="nav-link text-light" href="#">Home</a></li>
-        <li class="nav-item mx-md-2"><a class="nav-link text-light" href="#services">Our Services</a></li>
-        <li class="nav-item mx-md-2"><a class="nav-link text-light" href="#mission">Mission</a></li>
-        <li class="nav-item mx-md-2"><a class="nav-link text-light" href="#developers">Developers</a></li>
-        <li class="nav-item mx-md-2"><a class="nav-link text-light" href="#contact">Reach Us</a></li>
-      </ul>
+      <!-- Navbar links (always visible, not collapsible) -->
+      <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center mt-2 mt-md-0">
+        <a class="nav-link text-light px-3" href="#">Home</a>
+        <a class="nav-link text-light px-3" href="#services">Our Services</a>
+        <a class="nav-link text-light px-3" href="#mission">Mission</a>
+        <a class="nav-link text-light px-3" href="#developers">Developers</a>
+        <a class="nav-link text-light px-3" href="#contact">Reach Us</a>
+      </div>
 
-      <!-- Signup/Login Buttons -->
-      <div class="d-flex gap-2" style="padding-right:70px;">
-        <button class="btn btn-dark  " data-bs-toggle="modal" data-bs-target="#divSignup">Signup</button>
-        <button class="btn btn-dark  " data-bs-toggle="modal" data-bs-target="#divLogin">Login</button>
+      <!-- Login / Signup Buttons -->
+      <div class="d-flex gap-2 mt-2 mt-md-0">
+        <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#divSignup">Signup</button>
+        <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#divLogin">Login</button>
       </div>
 
     </div>
+  </nav>
   </nav>
 
 
