@@ -414,35 +414,32 @@
     main {
       flex: 1;
     }
+
+     
   </style>
   <style>
-    @keyframes scrollText {
-      0% {
-        transform: translateX(100%);
-      }
+  @keyframes scrollText {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
 
-      100% {
-        transform: translateX(-100%);
-      }
-    }
+  .scrolling-text {
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+  }
 
-    .scrolling-text {
-      white-space: nowrap;
-      overflow: hidden;
-      position: relative;
-    }
+  .scrolling-text span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scrollText 10s linear infinite;
+  }
+</style>
 
-    .scrolling-text span {
-      display: inline-block;
-      padding-left: 100%;
-      animation: scrollText 10s linear infinite;
-    }
-  </style>
-
-  <div class="d-block d-md-none scrolling-text text-white bg-dark bg-opacity-75 py-2 px-3 rounded">
-    <span>👋 Welcome to Lanceix — Explore. Play. Win. 🏆</span>
-  </div>
-
+<div class="d-block d-md-none scrolling-text text-white bg-dark bg-opacity-75 py-2 px-3 rounded">
+  <span>👋 Welcome to Lanceix — Explore. Play. Win. 🏆</span>
+</div>
+  
 
 </head>
 
@@ -464,13 +461,15 @@
       </a>
 
       <!-- Nav Links -->
-      <ul class="nav flex-column flex-md-row text-center text-md-start mb-2 mb-md-0">
-        <li class="nav-item mx-md-2"><a class="nav-link text-light" href="#">Home</a></li>
-        <li class="nav-item mx-md-2"><a class="nav-link text-light" href="#services">Our Services</a></li>
-        <li class="nav-item mx-md-2"><a class="nav-link text-light" href="#mission">Mission</a></li>
-        <li class="nav-item mx-md-2"><a class="nav-link text-light" href="#developers">Developers</a></li>
-        <li class="nav-item mx-md-2"><a class="nav-link text-light" href="#contact">Reach Us</a></li>
-      </ul>
+      
+      <div class="d-none d-md-flex"    style="padding-left: 20px;">
+        <ul class="nav flex-column flex-md-row text-center text-md-start mb-2 mb-md-0">
+        <li class="nav-item mx-md-0"><a class="nav-link text-light" href="#">Home</a></li>
+        <li class="nav-item mx-md-0"><a class="nav-link text-light" href="#services">Our Services</a></li>
+        <li class="nav-item mx-md-0"><a class="nav-link text-light" href="#mission">Mission</a></li>
+        <li class="nav-item mx-md-0"><a class="nav-link text-light" href="#developers">Developers</a></li>
+        <li class="nav-item mx-md-0"><a class="nav-link text-light" href="#contact">Reach Us</a></li>
+      </ul></div>
 
       <!-- Signup/Login Buttons -->
       <div class="d-flex gap-2" style="padding-right: 4%;">
@@ -529,11 +528,11 @@
           </p>
         </div>
         <!-- Mobile-only Welcome -->
-        <div class="d-block d-md-none text-center py-2 px-3 bg-dark bg-opacity-75 rounded shadow-sm">
-          <p class="mb-0 text-white small fw-semibold">
-            👋 Welcome to <span class="text-primary">Lanceix</span> — Explore, Compete, Win!
-          </p>
-        </div>
+<div class="d-block d-md-none text-center py-2 px-3 bg-dark bg-opacity-75 rounded shadow-sm">
+  <p class="mb-0 text-white small fw-semibold">
+    👋 Welcome to <span class="text-primary">Lanceix</span> — Explore, Compete, Win!
+  </p>
+</div>
       </div>
     </div>
     </div>
