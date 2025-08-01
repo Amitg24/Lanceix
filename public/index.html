@@ -486,38 +486,36 @@
 
 
   <main class="container py-4 ">
-    <!-- Hero Section with Carousel -->
+    <!-- top -welcome-section -->
     <div id="home" class="section p-0 mb-5">
       <div id="heroCarousel" class="carousel slide mb-5" data-bs-ride="carousel" data-bs-interval="3000">
-        <!-- Mobile-only Welcome -->
-        <div class="d-block d-md-none mt-1 text-center py-2 px-3 bg-dark bg-opacity-75 rounded shadow-sm w-100" style="padding-top: 10px;padding-bottom: 10px;">
+
+        <!-- ✅ Mobile-only Welcome Message -->
+        <div class="d-block d-md-none text-center bg-dark bg-opacity-75 py-2 px-3 mb-2 shadow rounded">
           <p class="mb-0 text-white small fw-semibold">
             👋 Welcome to <span class="text-primary">Lanceix</span> — Explore, Compete, Win!
           </p>
         </div>
-        <div class="carousel-inner mb-5 " style="height:inherit;">
 
+        <!-- ✅ Carousel Slides -->
+        <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="pics/fbb.jpg" class="d-block w-100 object-fit-contain" style="height: 100%;" alt="Football Match">
+            <img src="pics/fbb.jpg" class="d-block w-100 object-fit-cover" style="height: 70vh;" alt="Football Match">
           </div>
-
           <div class="carousel-item">
-            <img src="pics/hoc.jpg" class="d-block w-100 object-fit-contain" style="height: 100%;"
+            <img src="pics/hoc.jpg" class="d-block w-100 object-fit-cover" style="height: 70vh;"
               alt="Hockey Tournament">
           </div>
-
           <div class="carousel-item">
-            <img src="pics/ cric.jpg" class="d-block w-100 object-fit-contain" style="height: 100%;"
-              alt="Cricket Match">
+            <img src="pics/cric.jpg" class="d-block w-100 object-fit-cover" style="height: 70vh;" alt="Cricket Match">
           </div>
-
           <div class="carousel-item">
-            <img src="pics/basket.jpg" class="d-block w-100 object-fit-contain" style="height: 100%;"
+            <img src="pics/basket.jpg" class="d-block w-100 object-fit-cover" style="height: 70vh;"
               alt="Basketball Game">
           </div>
         </div>
 
-        <!-- Carousel Controls -->
+        <!-- ✅ Carousel Controls -->
         <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
           <span class="carousel-control-prev-icon"></span>
         </button>
@@ -525,14 +523,12 @@
           <span class="carousel-control-next-icon"></span>
         </button>
 
-
-        <!-- Overlayed Welcome Text -->
-        <!-- Desktop View -->
+        <!-- ✅ Desktop Overlay Text -->
         <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded-4 shadow-lg px-4 py-3 text-center">
-          <h1 class="fw-bold text-white display-6 display-md-3 mb-2">
+          <h1 class="fw-bold text-white display-6">
             Gear Up for <span class="text-primary">Glory</span>
           </h1>
-          <p class="fs-6 fs-md-5 text-light mb-0">
+          <p class="fs-5 text-light mb-0">
             Enter the world of <span class="text-primary fw-semibold">Lanceix</span> — where <span
               class="text-warning">passion</span> meets <span class="text-warning">challenge</span>.
           </p>
@@ -540,12 +536,11 @@
 
       </div>
     </div>
-    </div>
 
     <!-- Our Services Section -->
     <!-- <section id="services" class="section bg-light text-center py-5"> -->
     <div class="container" id="services">
-      <div class="mt-2 mb-3">
+      <div class="mt-1 mb-2">
         <center>
           <h2 class="  text-light ">Our Services</h2>
         </center>
@@ -630,7 +625,7 @@
 
       <!-- Developers Section -->
       <div class="container my-5" id="developers">
-        <div class="text-center mb-5">
+        <div class="text-center mb-3">
           <h2 class="fw-bold text-white display-6">Meet the Developers</h2>
           <p class="text-#F5FFFA">The minds behind <span class="text-info fw-semibold">Lanceix</span></p>
         </div>
@@ -692,7 +687,7 @@
 
       <!-- Reach Us Section -->
       <div class="container my-5" id="contact">
-        <div class="text-center mb-4">
+        <div class="text-center mb-2">
           <h2 class="fw-bold text-white">Reach Us</h2>
           <p class="text-secondary">Let’s connect and grow together</p>
         </div>
