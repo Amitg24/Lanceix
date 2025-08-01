@@ -415,23 +415,7 @@
       flex: 1;
     }
   </style>
-  <style>
-    /* responsive in mobile */
-    @media (max-width: 767px) {
-      .navbar .nav {
-        flex-direction: column;
-      }
-
-      .navbar .nav-item {
-        margin-bottom: 0.5rem;
-      }
-
-      .navbar .btn {
-        width: 100%;
-      }
-    }
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+ 
 </head>
 
 
@@ -447,7 +431,7 @@
       <!-- Logo -->
       <a class="navbar-brand d-flex align-items-center" href="#">
         <img src="pics/ lobe.png" alt="Lanceix Logo" style="height: 36px;">
-        <span class="ms-2 fw-bold d-none d-lg-flex">Lanceix</span>
+        <span class="ms-2 fw-bold ">Lanceix</span>
       </a>
 
       <!-- Navbar links + buttons -->
@@ -462,7 +446,7 @@
         </ul>
 
         <!-- Buttons -->
-        <div class="d-flex gap-2 mt-2 mt-md-0 text-center">
+        <div class="d-flex gap-2 mt-2 mt-md-0 ms-auto text-center">
           <button class="btn btn-outline-light " data-bs-toggle="modal" data-bs-target="#divSignup">Signup</button>
           <button class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#divLogin">Login</button>
         </div>
