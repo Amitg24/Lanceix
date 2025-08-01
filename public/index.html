@@ -347,6 +347,16 @@
       color: #0d6efd !important;
     }
 
+    .navbar .nav-link {
+      font-weight: 500;
+      color: #ddd;
+    }
+
+    .navbar .nav-link:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
     .carousel-caption h1,
     .carousel-caption p {
       color: #ffffff;
@@ -413,28 +423,32 @@
 
   <!-- Navbar -->
   <!-- Navbar -->
-  <nav class="navbar navbar-dark bg-dark fixed-top py-2">
-    <div class="container flex-column flex-md-row align-items-start align-items-md-center">
+  <!-- Navbar -->
+  <nav class="navbar navbar-dark bg-dark fixed-top py-3">
+    <div
+      class="container d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between">
 
       <!-- Brand -->
-      <a class="navbar-brand d-flex align-items-center mb-2 mb-md-0" href="#">
-        <img src="pics/ lobe.png" alt="Lanceix Logo" style="height: 40px;">
-        <span class="ms-2">Lanceix</span>
+      <a class="navbar-brand d-flex align-items-center mb-3 mb-md-0">
+        <img src="pics/lobe.png" alt="Lanceix Logo" style="height: 40px;">
+        <span class="ms-2 fs-4">Lanceix</span>
       </a>
 
-      <!-- Nav Links -->
-      <ul class="navbar-nav d-flex flex-column flex-md-row text-center gap-2 gap-md-4 mb-2 mb-md-0">
-        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#services">Our Services</a></li>
-        <li class="nav-item"><a class="nav-link" href="#mission">Mission</a></li>
-        <li class="nav-item"><a class="nav-link" href="#developers">Developers</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Reach Us</a></li>
+      <!-- Navigation Links -->
+      <ul class="navbar-nav d-flex flex-column flex-md-row align-items-center gap-2 gap-md-4 text-center mb-3 mb-md-0">
+        <li class="nav-item"><a class="nav-link px-2" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link px-2" href="#services">Our Services</a></li>
+        <li class="nav-item"><a class="nav-link px-2" href="#mission">Mission</a></li>
+        <li class="nav-item"><a class="nav-link px-2" href="#developers">Developers</a></li>
+        <li class="nav-item"><a class="nav-link px-2" href="#contact">Reach Us</a></li>
       </ul>
 
-      <!-- Buttons -->
-      <div class="d-flex gap-2">
-        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#divSignup">Signup</button>
-        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#divLogin">Login</button>
+      <!-- Auth Buttons -->
+      <div class="d-flex flex-column flex-md-row gap-2">
+        <button class="btn btn-outline-light w-100 w-md-auto" data-bs-toggle="modal"
+          data-bs-target="#divSignup">Signup</button>
+        <button class="btn btn-outline-light w-100 w-md-auto" data-bs-toggle="modal"
+          data-bs-target="#divLogin">Login</button>
       </div>
 
     </div>
