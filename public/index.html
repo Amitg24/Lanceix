@@ -414,8 +414,19 @@
     main {
       flex: 1;
     }
+
+    @media (max-width: 991.98px) {
+      .navbar .btn {
+        padding: 4px 12px;
+        font-size: 14px;
+      }
+
+      .navbar .ms-auto {
+        margin-left: auto !important;
+      }
+    }
   </style>
- 
+
 </head>
 
 
@@ -447,8 +458,8 @@
 
         <!-- Buttons -->
         <div class="d-flex gap-2 mt-2 mt-md-0 ms-auto text-center">
-          <button class="btn btn-outline-light " data-bs-toggle="modal" data-bs-target="#divSignup">Signup</button>
-          <button class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#divLogin">Login</button>
+          <button class="btn btn-outline-light " href="#" data-bs-toggle="modal" data-bs-target="#divSignup">Signup</button>
+          <button class="btn btn-primary " href="#" data-bs-toggle="modal" data-bs-target="#divLogin">Login</button>
         </div>
       </div>
     </div>
