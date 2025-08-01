@@ -414,32 +414,35 @@
     main {
       flex: 1;
     }
-
-     
   </style>
   <style>
-  @keyframes scrollText {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-  }
+    @keyframes scrollText {
+      0% {
+        transform: translateX(100%);
+      }
 
-  .scrolling-text {
-    white-space: nowrap;
-    overflow: hidden;
-    position: relative;
-  }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
 
-  .scrolling-text span {
-    display: inline-block;
-    padding-left: 100%;
-    animation: scrollText 10s linear infinite;
-  }
-</style>
+    .scrolling-text {
+      white-space: nowrap;
+      overflow: hidden;
+      position: relative;
+    }
 
-<div class="d-block d-md-none scrolling-text text-white bg-dark bg-opacity-75 py-2 px-3 rounded">
-  <span>👋 Welcome to Lanceix — Explore. Play. Win. 🏆</span>
-</div>
-  
+    .scrolling-text span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scrollText 10s linear infinite;
+    }
+  </style>
+
+  <div class="d-block d-md-none scrolling-text text-white bg-dark bg-opacity-75 py-2 px-3 rounded">
+    <span>👋 Welcome to Lanceix — Explore. Play. Win. 🏆</span>
+  </div>
+
 
 </head>
 
@@ -452,24 +455,25 @@
 
   <!--Navbar -->
   <nav class="navbar navbar-dark bg-dark py-2 fixed-top">
-    <div class="container-fluid d-flex flex-column flex-md-row justify-content-between align-items-center">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
 
       <!-- Logo -->
-      <a class="navbar-brand d-flex align-items-center mb-2 mb-md-0" href="#">
+      <a class="navbar-brand d-flex align-items-center mb-2 mb-md-0" href="#" style="padding-left: 4%;">
         <img src="pics/ lobe.png" alt="Lanceix Logo" style="height: 36px;">
         <span class="ms-2">Lanceix</span>
       </a>
 
       <!-- Nav Links -->
-      
-      <div class="d-none d-md-flex"    style="padding-left: 20px;">
+
+      <div class="d-none d-md-flex" style="padding-left: 20px;">
         <ul class="nav flex-column flex-md-row text-center text-md-start mb-2 mb-md-0">
-        <li class="nav-item mx-md-0"><a class="nav-link text-light" href="#">Home</a></li>
-        <li class="nav-item mx-md-0"><a class="nav-link text-light" href="#services">Our Services</a></li>
-        <li class="nav-item mx-md-0"><a class="nav-link text-light" href="#mission">Mission</a></li>
-        <li class="nav-item mx-md-0"><a class="nav-link text-light" href="#developers">Developers</a></li>
-        <li class="nav-item mx-md-0"><a class="nav-link text-light" href="#contact">Reach Us</a></li>
-      </ul></div>
+          <li class="nav-item mx-md-0"><a class="nav-link text-light" href="#">Home</a></li>
+          <li class="nav-item mx-md-0"><a class="nav-link text-light" href="#services">Our Services</a></li>
+          <li class="nav-item mx-md-0"><a class="nav-link text-light" href="#mission">Mission</a></li>
+          <li class="nav-item mx-md-0"><a class="nav-link text-light" href="#developers">Developers</a></li>
+          <li class="nav-item mx-md-0"><a class="nav-link text-light" href="#contact">Reach Us</a></li>
+        </ul>
+      </div>
 
       <!-- Signup/Login Buttons -->
       <div class="d-flex gap-2" style="padding-right: 4%;">
@@ -528,11 +532,11 @@
           </p>
         </div>
         <!-- Mobile-only Welcome -->
-<div class="d-block d-md-none text-center py-2 px-3 bg-dark bg-opacity-75 rounded shadow-sm">
-  <p class="mb-0 text-white small fw-semibold">
-    👋 Welcome to <span class="text-primary">Lanceix</span> — Explore, Compete, Win!
-  </p>
-</div>
+        <div class="d-block d-md-none text-center py-2 px-3 bg-dark bg-opacity-75 rounded shadow-sm">
+          <p class="mb-0 text-white small fw-semibold">
+            👋 Welcome to <span class="text-primary">Lanceix</span> — Explore, Compete, Win!
+          </p>
+        </div>
       </div>
     </div>
     </div>
