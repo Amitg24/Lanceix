@@ -323,15 +323,16 @@
         } */
   </style>
   <style>
-    @media (max-width: 767px) {
-      .navbar .nav-link {
-        padding: 0.3rem 0.5rem;
-        font-size: 14px;
+    @media (max-width: 768px) {
+
+      .navbar .nav-link,
+      .navbar .btn {
+        font-size: 15px;
+        margin: 5px 0;
       }
 
       .navbar .btn {
-        font-size: 14px;
-        padding: 4px 12px;
+        width: 100px;
       }
     }
   </style>
@@ -434,33 +435,42 @@
     <i class="fa-solid fa-spinner fa-spin-pulse"></i>
   </div>
 
-  <!-- NAvbar -->
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top py-2">
-    <div class="container-fluid d-flex flex-wrap justify-content-between align-items-center">
+    <div class="container-fluid">
 
       <!-- Logo -->
-      <a class="navbar-brand d-flex align-items-center" href="#" style="margin-left: 6%;">
+      <a class="navbar-brand d-flex align-items-center" href="#">
         <img src="pics/ lobe.png" alt="Lanceix Logo" style="height: 36px;">
         <span class="ms-2">Lanceix</span>
       </a>
 
-      <!-- Navbar links (always visible, not collapsible) -->
-      <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center mt-2 mt-md-0" style="margin-left: 60px;">
-        <a class="nav-link text-light px-3" href="#">Home</a>
-        <a class="nav-link text-light px-3" href="#services">Our Services</a>
-        <a class="nav-link text-light px-3" href="#mission">Mission</a>
-        <a class="nav-link text-light px-3" href="#developers">Developers</a>
-        <a class="nav-link text-light px-3" href="#contact">Reach Us</a>
-      </div>
+      <!-- Toggler button for mobile -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+        aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-      <!-- Login / Signup Buttons -->
-      <div class="d-flex gap-2 mt-2 mt-md-0" style= "padding-right :-70px;margin-right: 10%; "   >
-        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#divSignup">Signup</button>
-        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#divLogin">Login</button>
-      </div>
+      <!-- Collapsible content -->
+      <div class="collapse navbar-collapse justify-content-between" id="mainNavbar">
 
+        <!-- Links -->
+        <div class="navbar-nav mx-auto text-center">
+          <a class="nav-link px-3" href="#">Home</a>
+          <a class="nav-link px-3" href="#services">Our Services</a>
+          <a class="nav-link px-3" href="#mission">Mission</a>
+          <a class="nav-link px-3" href="#developers">Developers</a>
+          <a class="nav-link px-3" href="#contact">Reach Us</a>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex gap-2 mt-3 mt-md-0 justify-content-center">
+          <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#divSignup">Signup</button>
+          <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#divLogin">Login</button>
+        </div>
+
+      </div>
     </div>
-  </nav>
   </nav>
 
 
