@@ -125,7 +125,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><i class="bi bi-envelope-at"></i> {{obj.emailid}}</h5>
                         <p><strong>Event:</strong> {{obj.event}}</p>
-                        <p><strong>Date:</strong> {{obj.doe}}</p>
+                        <p><strong>Date:</strong> {{obj.doe| date:'dd MMMM yyyy'}}</p>
                         <p><strong>City:</strong> {{obj.city}}</p>
                         <p><strong>Contact:</strong> {{obj.contact}}</p>
                         <a href="#" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#detailsModal"
@@ -144,19 +144,19 @@
                     <h5 class="modal-title" id="exampleModalLabel">Tournament Details</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="padding: 15px;">
                     <p><strong>Email:</strong> {{oneRecord.emailid}}</p>
                     <p><strong>Event Name:</strong> {{oneRecord.event}}</p>
-                    <p><strong>Date:</strong>{{oneRecord.doe}}</p>
+                    <p><strong>Date:</strong>{{oneRecord.doe| date:'dd MMMM yyyy'}}</p>
                      <p><strong>Time:</strong>{{oneRecord.toe}}</p>
                       <p><strong>Venue:</strong>{{oneRecord.address}}</p>
                        <p><strong>City:</strong> {{oneRecord.city}}</p>
                        <p><strong>Game:</strong>{{oneRecord.sports}}</p>
-                        <p><strong>Minimum Age:</strong>{{oneRecord.minage}}</p>
-                         <p><strong>Maximum Age:</strong>{{oneRecord.maxage}}</p>
-                          <p><strong>Registration Deadline:</strong>{{oneRecord.lastdate}}</p>
-                           <p><strong>Entry Fee:</strong>{{oneRecord.fee}}</p>
-                            <p><strong>Prize Pool:</strong>{{oneRecord.prize}}</p>
+                        <p><strong>Minimum Age:</strong>{{oneRecord.minage}}yrs</p>
+                         <p><strong>Maximum Age:</strong>{{oneRecord.maxage}}yrs</p>
+                          <p><strong>Registration Deadline:</strong>{{oneRecord.lastdate| date:'dd MMMM yyyy'}}</p>
+                           <p><strong>Entry Fee:</strong>₹{{oneRecord.fee}}</p>
+                            <p><strong>Prize Pool:</strong>₹{{oneRecord.prize}}</p>
                      <p><strong>Contact:</strong> {{oneRecord.contact}}</p>
                     
                 </div>
