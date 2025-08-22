@@ -231,7 +231,10 @@ app.get("/do-Login", function (req, resp) {
     mySqlVen.query("select * from users where emailid=? and password=?", [emailid, pwd], function (err, allRecords) {
         console.log(allRecords);
         if (allRecords.length == 0) {
-            resp.send("Invalid");
+            if(emailid ==""|| pwd=="")
+               resp.send("Invalid");
+            else
+                 resp.send("Invalid Emaildid or password")
         }
         else {
 

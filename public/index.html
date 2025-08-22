@@ -235,6 +235,13 @@
         $.ajax(obj).then(function (resp) {
           let txtEmailactive = $("#txtEmail1").val();
           //  alert(txtEmailactive);
+           if (response == "Invalid Emaildid or password")
+            $("#loginemail").html("Invalid EmailID").removeClass().addClass("text-danger");
+          else {
+            $("#loginemail").html("").removeClass().addClass("text-danger");
+            // $("#utypeDisplay").html("User Type: <b>" + response + "</b>");
+          }
+          
 
           if (resp == "Invalid") {
             if ($("#txtEmail1").val() != "") {
@@ -277,7 +284,7 @@
           }
 
         }).fail(function (err) {
-          alert(err);
+          alert("Invalid Emailid or password");
         })
 
       })
