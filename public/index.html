@@ -229,6 +229,8 @@
           data: {
             txtEmail1: $("#txtEmail1").val(),
             txtPwd1: $("#txtPwd1").val(),
+            fname: $("#firstName").val(),
+            lname: $("#lastName").val()
           },
         }
 
@@ -271,7 +273,7 @@
                 else
 
                   if (resp == "Admin") {
-                    localStorage.setItem("activeUser", $("#fname").val() + " " + $("#lname").val())
+                    localStorage.setItem("activeUser", $("#firstName").val() + " " + $("#lastName").val())
 
                     location.href = "dash-admin.html";
                   }
