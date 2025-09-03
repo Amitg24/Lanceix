@@ -271,7 +271,7 @@
                 else
 
                   if (resp == "Admin") {
-                    localStorage.setItem("activeUser", $("#fname").val()+" "+$("#lname").val())
+                    localStorage.setItem("activeUser", $("#fname").val() + " " + $("#lname").val())
 
                     location.href = "dash-admin.html";
                   }
@@ -516,8 +516,8 @@
 
       <!-- Signup/Login Buttons -->
       <div class="d-flex gap-2" style="padding-right: 4%;">
-        <button class="btn btn-dark " data-bs-toggle="modal" data-bs-target="#divSignup">Signup</button>
-        <button class="btn btn-dark " data-bs-toggle="modal" data-bs-target="#divLogin">Login</button>
+        <button style="background: linear-gradient(135deg, #292929, #021424)" class="btn btn-dark " data-bs-toggle="modal" data-bs-target="#divSignup">Signup</button>
+        <button style="background: linear-gradient(135deg, #292929, #021424)" class="btn btn-dark " data-bs-toggle="modal" data-bs-target="#divLogin">Login</button>
       </div>
 
     </div>
@@ -772,6 +772,48 @@
 
         </div>
       </div>
+      <!-- Feedback Section -->
+      <div class="container my-5" id="feedback">
+        <div class="text-center mb-3">
+          <h2 class="fw-bold text-white">Your Feedback</h2>
+          <p class="text-secondary">Players and Organizers can share suggestions to improve Lanceix 🚀</p>
+        </div>
+
+        <form action="mailto:garg2422005@gmail.com" method="POST" enctype="text/plain"
+          class="p-4 rounded-4 shadow-lg bg-dark text-light">
+          
+          <!-- First & Last Name -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="fnameFeedback" class="form-label">First Name</label>
+              <input type="text" class="form-control bg-dark text-light" id="fnameFeedback" name="First Name" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="lnameFeedback" class="form-label">Last Name</label>
+              <input type="text" class="form-control bg-dark text-light" id="lnameFeedback" name="Last Name" required>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="mb-3">
+            <label for="emailFeedback" class="form-label">Email</label>
+            <input type="email" class="form-control bg-dark text-light" id="emailFeedback" name="Email" required>
+          </div>
+
+          <!-- Feedback Message -->
+          <div class="mb-3">
+            <label for="feedbackText" class="form-label">Your Feedback / Suggestions</label>
+            <textarea class="form-control bg-dark text-light" id="feedbackText" name="Feedback" rows="4"
+              required></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn text-white fw-semibold"
+            style="background: linear-gradient(135deg, #292929, #021424); border: none;  ">
+            Send Feedback
+          </button>
+        </form>
+      </div>
   </main>
   <footer class=" bg-dark text-secondary text-center py-3 mt-auto border-top border-secondary">
     <small>&copy; 2025 <span class="text-light fw-semibold">Lanceix</span>. All Rights Reserved.</small>
@@ -787,7 +829,7 @@
       <div class="modal-content">
 
         <!-- Modal Header -->
-        <div class="modal-header" style="background: linear-gradient(135deg, #0d1b2a, #1b263b); color: white;">
+        <div class="modal-header" style="background: linear-gradient(135deg, #292929, #021424); color: white;">
           <h5 class="modal-title">Signup Modal</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -848,7 +890,7 @@
             <!-- Modal Footer -->
             <div class="modal-footer">
               <input type="submit" value="Signup" class="btn text-white fw-semibold"
-                style="width: 90px; background: linear-gradient(135deg, #0d1b2a, #1b263b); border: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+                style="width: 90px;margin-top: 15px; background: linear-gradient(135deg, #0d1b2a, #1b263b); border: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
             </div>
           </form>
         </div>
@@ -864,7 +906,7 @@
       <div class="modal-content">
 
         <!-- Modal Header -->
-        <div class="modal-header" style="background: linear-gradient(135deg, #0d1b2a, #1b263b); color: white;">
+        <div class="modal-header" style="background: linear-gradient(135deg, #292929, #021424); color: white;">
           <h5 class="modal-title">Login Modal</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -894,15 +936,12 @@
               <span id="loginpwd"></span>
             </div>
 
-            <!-- Optional: User Type -->
-            <div class="mb-3 text-center">
-              <span id="utypeDisplay"></span>
-            </div>
+        
 
             <!-- Modal Footer -->
             <div class="modal-footer">
               <input type="submit" value="Login" class="btn text-white fw-semibold"
-                style="width: 90px; background: linear-gradient(135deg, #0d1b2a, #1b263b); border: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+                style="width: 90px;margin-top: 15px; background: linear-gradient(135deg, #0d1b2a, #1b263b); border: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
             </div>
           </form>
         </div>
