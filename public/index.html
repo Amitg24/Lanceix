@@ -189,7 +189,7 @@
 
 
         }).fail(function (err) {
-          
+
         })
 
 
@@ -216,7 +216,7 @@
 
 
         }).fail(function (err) {
-           
+
         })
 
 
@@ -235,7 +235,7 @@
         $.ajax(obj).then(function (resp) {
           let txtEmailactive = $("#txtEmail1").val();
           //  alert(txtEmailactive);
-          
+
 
           if (resp == "Invalid") {
             if ($("#txtEmail1").val() != "") {
@@ -278,7 +278,7 @@
           }
 
         }).fail(function (err) {
-           
+
         })
 
       })
@@ -415,7 +415,7 @@
       flex: 1;
     }
   </style>
-  <style>
+  <!-- <style>
     @keyframes scrollText {
       0% {
         transform: translateX(100%);
@@ -437,7 +437,31 @@
       padding-left: 100%;
       animation: scrollText 10s linear infinite;
     }
+  </style> -->
+  <!-- for go to top scrollinhg -->
+  <style>
+    .hidden {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+
+    .show {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    });
+
+    document.querySelectorAll(".hidden").forEach(el => observer.observe(el));
+  </script>
 
   <div class="d-block d-md-none scrolling-text text-white bg-dark bg-opacity-75 py-2 px-3 rounded">
     <span>👋 Welcome to Lanceix — Explore. Play. Win. 🏆</span>
@@ -451,6 +475,8 @@
   <div id="waiting">
     <i class="fa-solid fa-spinner fa-spin-pulse"></i>
   </div>
+  <h2 class="hidden">Bottom to Top (Scroll)</h2>
+  <h2 class="hidden" style="transform:translateY(-50px);">Top to Bottom (Scroll)</h2>
 
 
   <!--Navbar -->
@@ -771,18 +797,13 @@
             <span id="errPwd"></span>
           </div>
         </div>
-        <div>
-          <center>
-
-            User-Type:
-            <select name="utype" id="utype" style="background: black;color:white;">
-              <option value="none">Select </option>
-              <option value="Player">Player</option>
-              <option value="Organizer">Organizer</option>
-
-            </select><span id="errutype"></span>
-
-          </center>
+        <div class="col-md-4">
+          <label for="utype" class="form-label">User-Type</label>
+          <select name="utype" id="utype" style="background: black;color:white;">
+            <option selected>Choose...</option>
+            <option value="Player">Player</option>
+            <option value="Organizer">Organizer</option>
+          </select><span id="errutype"></span>
         </div>
         </p>
 
