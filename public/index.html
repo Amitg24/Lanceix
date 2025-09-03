@@ -64,13 +64,13 @@
                 $("#errEmail").html("Email ID required").removeClass().addClass("text-danger");
             }
             else {
-              if (resp == "Player") {
-                localStorage.setItem("activeUser", $("#txtEmail").val())
+              if (resp.utype == "Player") {
+                localStorage.setItem("activeUser", resp.fname+ " " + resp.lname )
                 location.href = "dash-Player.html";
               }
               else
-                if (resp == "Organizer") {
-                  localStorage.setItem("activeUser", $("#txtEmail").val())
+                if (resp.utype == "Organizer") {
+                  localStorage.setItem("activeUser", resp.fname+ " " + resp.lname)
 
                   location.href = "dash-organizer.html";
                 }
@@ -229,8 +229,7 @@
           data: {
             txtEmail1: $("#txtEmail1").val(),
             txtPwd1: $("#txtPwd1").val(),
-            fname: $("#firstName").val(),
-            lname: $("#lastName").val()
+            
           },
         }
 
@@ -260,27 +259,27 @@
             if (resp == "Blocked")
               alert("You are Blocked");
             else
-              if (resp == "Player") {
-                localStorage.setItem("activeUser", $("#txtEmail1").val())
+              if (resp.utype == "Player") {
+                localStorage.setItem("activeUser", resp.fname+ " " + resp.lname )
                 location.href = "dash-Player.html";
               }
               else
-                if (resp == "Organizer") {
-                  localStorage.setItem("activeUser", $("#txtEmail1").val())
+                if (resp.utype == "Organizer") {
+                  localStorage.setItem("activeUser",  resp.fname+ " " + resp.lname )
 
                   location.href = "dash-organizer.html";
                 }
                 else
 
-                  if (resp == "Admin") {
-                    localStorage.setItem("activeUser", $("#firstName").val() + " " + $("#lastName").val())
+                  if (resp.utype == "Admin") {
+                    localStorage.setItem("activeUser", resp.fname+ " " + resp.lname )
 
                     location.href = "dash-admin.html";
                   }
           }
 
         }).fail(function (err) {
-
+           alert("Server error. Please try again later.");
         })
 
       })
@@ -500,7 +499,7 @@
 
       <!-- Logo -->
       <a class="navbar-brand d-flex align-items-center mb-2 mb-md-0" href="#" style="padding-left: 4%;">
-        <img src="pics/ lobe.png" alt="Lanceix Logo" style="height: 36px;">
+        <img src="pics/lobe.png" alt="Lanceix Logo" style="height: 36px;">
         <span class="ms-2">Lanceix</span>
       </a>
 

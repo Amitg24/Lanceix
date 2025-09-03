@@ -105,109 +105,165 @@ app.get("/get-Signup", function (req, resp) {
     let emailid = req.query.txtEmail;
     let regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     let regexpwd = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}/;
-    let fname=req.query.firstName;
-    let lname=req.query.lastName;
-     let pwd = req.query.txtPwd;
+    let fname = req.query.firstName;
+    let lname = req.query.lastName;
+    let pwd = req.query.txtPwd;
     let utype = req.query.utype;
 
     if (emailid != "" && pwd != "" && (utype == "Player" || utype == "Organizer")) {
         if (regex.test(emailid) == true && regexpwd.test(pwd) == true && (utype == "Player" || utype == "Organizer")) {
-            mySqlVen.query("insert into users values(?,?,?,?,?,current_date(),1)", [emailid,fname,lname, pwd, utype], function (errKuch, allRecords) {
+            mySqlVen.query("insert into users values(?,?,?,?,?,current_date(),1)", [emailid, fname, lname, pwd, utype], function (errKuch, allRecords) {
 
                 if (errKuch == null) {
                     if (utype == "Player") {
-                        resp.send(utype);
-                        // nodemailer
+                        resp.json({
+                            utype: allRecords[0].utype,
+                            fname: allRecords[0].fname,
+                            lname: allRecords[0].lname
+                        });
+                        // nodemailer for player
                         const transporter = nodemailer.createTransport({
-                            service: 'gmail', // You can also use other providers like Outlook, Yahoo, etc.
+                            service: 'gmail',
                             auth: {
                                 user: 'garg2422005@gmail.com',
-                                pass: 'wrxm kbmj aipz wmrp', // Use App Passwords or OAuth2 for Gmail
+                                pass: 'wrxm kbmj aipz wmrp', // App Password
                             },
                         });
 
-                        // Define the email options
-
-                        const mailOptions = {
-
-
+                        // Define the email options for Player Signup
+                        const mailOptionsPlayerSignup = {
                             from: 'garg2422005@gmail.com',
-                            to: emailid,
-                            subject: 'Welcome to Lanceix – Let the Games Begin! 🏆',
+                            to: emailid, // New Player email
+                            subject: '🎉 Welcome to Lanceix Player Community!',
                             html: `
-      <p>Hi <strong>${emailid}</strong>,</p>
-      <p>Welcome to <strong>Lanceix</strong>, your personal gateway to exciting sports tournaments around you!</p>
-      <p>As a player, you can now:</p>
+      <p>Hi <strong>${fname} ${lname}</strong>,</p>
+      <p>Welcome to <strong>Lanceix</strong>! 🚀</p>
+      <p>Your <strong>Player account</strong> has been created successfully. Now you can:</p>
       <ul>
-        <li>Explore and register for live sports events</li>
-        <li>Track your participation and performance</li>
-        <li>Connect with organizers and fellow athletes</li>
+        <li>Explore and join upcoming tournaments 🎮</li>
+        <li>Track your stats and performance 📊</li>
+        <li>Compete with the esports community 🌍</li>
       </ul>
-      <p>We're glad to have you on board. Let the games begin! 🏆</p>
-      <p><a href="https://lanceix.onrender.com">Explore Events Now</a></p>
+      <p><a href="https://lanceix.onrender.com">Login to Your Dashboard</a></p>
       <br>
-      <p>Team Lanceix</p>
+      <p>Gear up and start your esports journey with us! 🏆</p>
+      <p>– Team Lanceix</p>
     `
                         };
 
-                        // Send the email
-                        transporter.sendMail(mailOptions, function (error, info) {
+                        // Send Player Signup email
+                        transporter.sendMail(mailOptionsPlayerSignup, function (error, info) {
                             if (error) {
-                                console.log('Error occurred:', error);
+                                console.log('Error occurred (Player Signup Mail):', error);
                             } else {
-                                console.log('Email sent:' + info.response);
+                                console.log('Player Signup email sent:' + info.response);
                             }
                         });
 
 
                     }
                     else {
-                        resp.send(utype);
-                        // nodemailer for organizer
-                        const transporter = nodemailer.createTransport({
-                            service: 'gmail', // You can also use other providers like Outlook, Yahoo, etc.
-                            auth: {
-                                user: 'garg2422005@gmail.com',
-                                pass: 'wrxm kbmj aipz wmrp', // Use App Passwords or OAuth2 for Gmail
-                            },
-                        });
+                        if (utype == "Organizer") {
+                            resp.json({
+                                utype: allRecords[0].utype,
+                                fname: allRecords[0].fname,
+                                lname: allRecords[0].lname
+                            });
+                            // nodemailer for organizer
+                            const transporter = nodemailer.createTransport({
+                                service: 'gmail',
+                                auth: {
+                                    user: 'garg2422005@gmail.com',
+                                    pass: 'wrxm kbmj aipz wmrp', // App Password
+                                },
+                            });
 
-                        // Define the email options
-
-                        const mailOptions = {
-
-
-                            from: 'garg2422005@gmail.com',
-                            to: emailid,
-                            subject: 'Welcome to Lanceix – Start Hosting Your Tournaments Today! 🗓️',
-                            html: `
-      <p>Hi <strong>${emailid}</strong>,</p>
-      <p>Welcome to <strong>Lanceix</strong>, the platform built to simplify your tournament management!</p>
-      <p>As an organizer, you can now:</p>
+                            // Define the email options for Organizer Signup
+                            const mailOptionsOrganizerSignup = {
+                                from: 'garg2422005@gmail.com',
+                                to: emailid, // New Organizer email
+                                subject: '📢 Welcome to Lanceix Organizer Panel!',
+                                html: `
+      <p>Hi <strong>${fname} ${lname}</strong>,</p>
+      <p>Welcome aboard as a <strong>Tournament Organizer</strong> with <strong>Lanceix</strong>! 🚀</p>
+      <p>Your organizer account has been successfully created. Now you can:</p>
       <ul>
-        <li>Create and publish sports tournaments</li>
-        <li>Manage registrations and participant details</li>
-        <li>Reach the right players in your city</li>
+        <li>Create and host tournaments 🏆</li>
+        <li>Manage player registrations 👥</li>
+        <li>Track matches and results in real time 📊</li>
       </ul>
-      <p>We’re excited to support your journey. Let’s bring more sports to life! ⚽🏸🏀</p>
-      <p><a href="https://lanceix.onrender.com">Post Your First Event</a></p>
+      <p><a href="https://lanceix.onrender.com/organizer">Go to Organizer Dashboard</a></p>
       <br>
-      <p>Team Lanceix</p>
+      <p>Let’s make esports bigger and better together! 🎮</p>
+      <p>– Team Lanceix</p>
     `
-                        };
+                            };
 
-                        // Send the email
-                        transporter.sendMail(mailOptions, function (error, info) {
-                            if (error) {
-                                console.log('Error occurred:', error);
-                            } else {
-                                console.log('Email sent:' + info.response);
+                            // Send Organizer Signup email
+                            transporter.sendMail(mailOptionsOrganizerSignup, function (error, info) {
+                                if (error) {
+                                    console.log('Error occurred (Organizer Signup Mail):', error);
+                                } else {
+                                    console.log('Organizer Signup email sent:' + info.response);
+                                }
+                            });
+
+
+
+
+                        }
+                        else {
+                            if (allRecords[0].utype == "Admin") {
+                                resp.json({
+                                    utype: allRecords[0].utype,
+                                    fname: allRecords[0].fname,
+                                    lname: allRecords[0].lname
+                                });
+
                             }
-                        });
+                            // nodemailer for admin
+                            const transporter = nodemailer.createTransport({
+                                service: 'gmail',
+                                auth: {
+                                    user: 'garg2422005@gmail.com',
+                                    pass: 'wrxm kbmj aipz wmrp', // App Password
+                                },
+                            });
+
+                            // Define the email options for Admin Signup
+                            const mailOptionsAdminSignup = {
+                                from: 'garg2422005@gmail.com',
+                                to: emailid, // New Admin email
+                                subject: '👑 Welcome to Lanceix Admin Panel – Setup Complete!',
+                                html: `
+      <p>Hi <strong>${fname} ${lname}</strong>,</p>
+      <p>Welcome to <strong>Lanceix</strong> as an <strong>Admin</strong>! 🚀</p>
+      <p>Your admin account has been created successfully. Now you can:</p>
+      <ul>
+        <li>Create and manage tournaments 🏆</li>
+        <li>Verify and manage player accounts ✅</li>
+        <li>Monitor platform stats and performance 📊</li>
+      </ul>
+      <p><a href="https://lanceix.onrender.com/admin">Go to Admin Dashboard</a></p>
+      <br>
+      <p>Lead the esports journey with Lanceix! 👑</p>
+      <p>– Team Lanceix</p>
+    `
+                            };
+
+                            // Send Admin Signup email
+                            transporter.sendMail(mailOptionsAdminSignup, function (error, info) {
+                                if (error) {
+                                    console.log('Error occurred (Admin Signup Mail):', error);
+                                } else {
+                                    console.log('Admin Signup email sent:' + info.response);
+                                }
+                            });
 
 
-
+                        }
                     }
+
                 }
                 else
                     resp.send(errKuch.message);
@@ -226,45 +282,50 @@ app.get("/do-Login", function (req, resp) {
 
     let emailid = req.query.txtEmail1;
     let pwd = req.query.txtPwd1;
+    let fname = req.query.firstName;
+    let lname = req.query.lastName;
 
 
 
     mySqlVen.query("select * from users where emailid=? and password=?", [emailid, pwd], function (err, allRecords) {
         console.log(allRecords);
         if (allRecords.length == 0) {
-            if(emailid ==""|| pwd=="")
-               resp.send("Invalid");
+            if (emailid == "" || pwd == "")
+                resp.send("Invalid");
             else
-                 resp.send("Invalid Emaildid or password")
+                resp.send("Invalid Emaildid or password")
         }
         else {
 
             if (allRecords[0].status == 0) {
                 resp.send("Blocked");
             }
-            else
-            {
+            else {
                 if (allRecords[0].utype == "Player") {
-                        resp.send(allRecords[0].utype);
-                        // nodemailer
-                        const transporter = nodemailer.createTransport({
-                            service: 'gmail', // You can also use other providers like Outlook, Yahoo, etc.
-                            auth: {
-                                user: 'garg2422005@gmail.com',
-                                pass: 'wrxm kbmj aipz wmrp', // Use App Passwords or OAuth2 for Gmail
-                            },
-                        });
+                    resp.json({
+                        utype: allRecords[0].utype,
+                        fname: allRecords[0].fname,
+                        lname: allRecords[0].lname
+                    });
+                    // nodemailer
+                    const transporter = nodemailer.createTransport({
+                        service: 'gmail', // You can also use other providers like Outlook, Yahoo, etc.
+                        auth: {
+                            user: 'garg2422005@gmail.com',
+                            pass: 'wrxm kbmj aipz wmrp', // Use App Passwords or OAuth2 for Gmail
+                        },
+                    });
 
-                        // Define the email options
+                    // Define the email options
 
-                        const mailOptions = {
- 
+                    const mailOptions = {
 
-                            from: 'garg2422005@gmail.com',
-                            to: emailid,
-                            subject: 'Welcome Back, Player! 🎮 – Lanceix Login Successful',
-                            html:  `
-      <p>Hi <strong>${emailid}</strong>,</p>
+
+                        from: 'garg2422005@gmail.com',
+                        to: emailid,
+                        subject: 'Welcome Back, Player! 🎮 – Lanceix Login Successful',
+                        html: `
+      <p>Hi <strong>${fname} ${lname}</strong>,</p>
       <p>You’ve successfully logged into your Lanceix Player account.</p>
       <p>Check out new tournaments, track your performance, and join the action!</p>
       <p><a href="https://lanceix.onrender.com">Go to Your Dashboard</a></p>
@@ -272,40 +333,86 @@ app.get("/do-Login", function (req, resp) {
       <p>Play hard, win big! 🏆</p>
       <p>– Team Lanceix</p>
     `
-                        };
+                    };
 
-                        // Send the email
-                        transporter.sendMail(mailOptions, function (error, info) {
-                            if (error) {
-                                console.log('Error occurred:', error);
-                            } else {
-                                console.log('Email sent:' + info.response);
-                            }
+                    // Send the email
+                    transporter.sendMail(mailOptions, function (error, info) {
+                        if (error) {
+                            console.log('Error occurred:', error);
+                        } else {
+                            console.log('Email sent:' + info.response);
+                        }
+                    });
+
+
+                }
+                else {
+                    if (allRecords[0].utype == "Admin") {
+                        resp.json({
+                            utype: allRecords[0].utype,
+                            fname: allRecords[0].fname,
+                            lname: allRecords[0].lname
                         });
-
-
-                    }
-                    else {
-                        resp.send(allRecords[0].utype);
-                        // nodemailer for organizer
+                        // nodemailer
                         const transporter = nodemailer.createTransport({
-                            service: 'gmail', // You can also use other providers like Outlook, Yahoo, etc.
+                            service: 'gmail',
                             auth: {
                                 user: 'garg2422005@gmail.com',
-                                pass: 'wrxm kbmj aipz wmrp', // Use App Passwords or OAuth2 for Gmail
+                                pass: 'wrxm kbmj aipz wmrp', // App Password (never commit to GitHub!)
                             },
                         });
 
-                        // Define the email options
-
-                        const mailOptions = {
-
-
+                        // Define the email options for Admin
+                        const mailOptionsAdmin = {
                             from: 'garg2422005@gmail.com',
-                            to: emailid,
-                            subject: 'Organizer Login Successful – Welcome Back to Lanceix ',
-                            html:  `
-      <p>Hi <strong>${emailid}</strong>,</p>
+                            to: emailid, // Admin's email
+                            subject: 'Welcome Back, Admin! 👑 – Lanceix Dashboard Access',
+                            html: `
+      <p>Hi <strong>${fname} ${lname}</strong>,</p>
+      <p>You’ve successfully logged into your <strong>Lanceix Admin</strong> account.</p>
+      <p>Now you can manage tournaments, verify players, and monitor the platform.</p>
+      <p><a href="https://lanceix.onrender.com/admin">Go to Admin Dashboard</a></p>
+      <br>
+      <p>Lead the game with confidence! 🚀</p>
+      <p>– Team Lanceix</p>
+    `
+                        };
+
+                        // Send the email for Admin
+                        transporter.sendMail(mailOptionsAdmin, function (error, info) {
+                            if (error) {
+                                console.log('Error occurred (Admin Mail):', error);
+                            } else {
+                                console.log('Admin email sent:' + info.response);
+                            }
+                        });
+                    }
+                    else {
+                        if (allRecords[0].utype == "Organizer") {
+                            resp.json({
+                                utype: allRecords[0].utype,
+                                fname: allRecords[0].fname,
+                                lname: allRecords[0].lname
+                            });
+                            // nodemailer for organizer
+                            const transporter = nodemailer.createTransport({
+                                service: 'gmail', // You can also use other providers like Outlook, Yahoo, etc.
+                                auth: {
+                                    user: 'garg2422005@gmail.com',
+                                    pass: 'wrxm kbmj aipz wmrp', // Use App Passwords or OAuth2 for Gmail
+                                },
+                            });
+
+                            // Define the email options
+
+                            const mailOptions = {
+
+
+                                from: 'garg2422005@gmail.com',
+                                to: emailid,
+                                subject: 'Organizer Login Successful – Welcome Back to Lanceix ',
+                                html: `
+      <p>Hi <strong>${fname} ${lname}</strong>,</p>
       <p>You’ve successfully logged into your Lanceix Organizer account.</p>
       <p>Ready to manage your tournaments, view participants, and plan your next event?</p>
       <p><a href="https://lanceix.onrender.com">Open Organizer Dashboard</a></p>
@@ -313,20 +420,23 @@ app.get("/do-Login", function (req, resp) {
       <p>Wishing you great events ahead! 🎯</p>
       <p>– Team Lanceix</p>
     `
-                        };
+                            };
 
-                        // Send the email
-                        transporter.sendMail(mailOptions, function (error, info) {
-                            if (error) {
-                                console.log('Error occurred:', error);
-                            } else {
-                                console.log('Email sent:' + info.response);
-                            }
-                        });
+                            // Send the email
+                            transporter.sendMail(mailOptions, function (error, info) {
+                                if (error) {
+                                    console.log('Error occurred:', error);
+                                } else {
+                                    console.log('Email sent:' + info.response);
+                                }
+                            });
 
 
 
+                        }
                     }
+
+                }
             }
 
         }
