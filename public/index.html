@@ -1,4 +1,3 @@
-m
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,13 +64,13 @@ m
                 $("#errEmail").html("Email ID required").removeClass().addClass("text-danger");
             }
             else {
-              if (resp.utype == "Player") {
-                localStorage.setItem("activeUser", resp.fname + " " + resp.lname)
+              if (resp == "Player") {
+                localStorage.setItem("activeUser", $("#txtEmail").val())
                 location.href = "dash-Player.html";
               }
               else
-                if (resp.utype == "Organizer") {
-                  localStorage.setItem("activeUser", resp.fname + " " + resp.lname)
+                if (resp == "Organizer") {
+                  localStorage.setItem("activeUser", $("#txtEmail").val())
 
                   location.href = "dash-organizer.html";
                 }
@@ -230,7 +229,8 @@ m
           data: {
             txtEmail1: $("#txtEmail1").val(),
             txtPwd1: $("#txtPwd1").val(),
-
+            fname: $("#firstName").val(),
+            lname: $("#lastName").val()
           },
         }
 
@@ -260,27 +260,27 @@ m
             if (resp == "Blocked")
               alert("You are Blocked");
             else
-              if (resp.utype == "Player") {
-                localStorage.setItem("activeUser", resp.fname + " " + resp.lname)
+              if (resp == "Player") {
+                localStorage.setItem("activeUser", $("#txtEmail1").val())
                 location.href = "dash-Player.html";
               }
               else
-                if (resp.utype == "Organizer") {
-                  localStorage.setItem("activeUser", resp.fname + " " + resp.lname)
+                if (resp == "Organizer") {
+                  localStorage.setItem("activeUser", $("#txtEmail1").val())
 
                   location.href = "dash-organizer.html";
                 }
                 else
 
-                  if (resp.utype == "Admin") {
-                    localStorage.setItem("activeUser", resp.fname + " " + resp.lname)
+                  if (resp == "Admin") {
+                    localStorage.setItem("activeUser", $("#firstName").val() + " " + $("#lastName").val())
 
                     location.href = "dash-admin.html";
                   }
           }
 
         }).fail(function (err) {
-          alert("Server error. Please try again later.");
+
         })
 
       })
@@ -518,10 +518,8 @@ m
 
       <!-- Signup/Login Buttons -->
       <div class="d-flex gap-2" style="padding-right: 4%;">
-        <button style="background: linear-gradient(135deg, #292929, #021424)" class="btn btn-dark "
-          data-bs-toggle="modal" data-bs-target="#divSignup">Signup</button>
-        <button style="background: linear-gradient(135deg, #292929, #021424)" class="btn btn-dark "
-          data-bs-toggle="modal" data-bs-target="#divLogin">Login</button>
+        <button style="background: linear-gradient(135deg, #292929, #021424)" class="btn btn-dark " data-bs-toggle="modal" data-bs-target="#divSignup">Signup</button>
+        <button style="background: linear-gradient(135deg, #292929, #021424)" class="btn btn-dark " data-bs-toggle="modal" data-bs-target="#divLogin">Login</button>
       </div>
 
     </div>
@@ -676,30 +674,29 @@ m
         <div class="row justify-content-center g-4">
 
           <!-- Mentor Card -->
+
           <div class="col-md-4">
             <div class="card bg-gradient bg-dark text-light text-center p-4 shadow-lg border-0 rounded-4 h-100">
               <img src="pics/c5ea308c-786b-4b37-869f-3dda21b63598.JPG"
                 class="rounded-circle mx-auto mt-2 shadow-sm border border-secondary" width="100" height="100"
-                alt="Rajesh Bansal Sir">
+                alt="Mentor">
 
-              <h5 class="mt-3 fw-semibold text-light">Under the Guidance of</h5>
+              <h5 class="mt-3 fw-semibold text-#F5FFFA">Under the Guidance of</h5>
               <p class="text-white-50 mb-1 fs-5 fw-medium">Rajesh Bansal Sir</p>
 
               <p class="text-light small mb-1">Mentor, Guide & Support System</p>
-              <p class="text-light small">
-                Author of <em>'Real Java'</em> — inspiring generations with knowledge and clarity.
-              </p>
-              <hr class="text-secondary w-75 mx-auto my-1">
+              <p class="text-light small">Author of <em>'Real Java'</em> — inspiring generations with knowledge and
+                clarity.</p>
+
+              <hr class="text-secondary w-75 mx-auto my-2">
+
               <p class="mb-1">
                 <i class="fas fa-envelope text-warning me-2"></i>
-                <a href="mailto:bcebti@gmail.com" class="text-decoration-none text-light">
-                  bcebti@gmail.com
-                </a>
+                <a href="mailto:rajeshbansal@example.com" class="text-decoration-none text-light"> bcebti@gmail.com </a>
               </p>
               <p>
                 <i class="fas fa-phone text-success me-2"></i>
                 <span class="text-light">+91-9872246056</span>
-                <br>
               </p>
             </div>
           </div>
@@ -707,129 +704,120 @@ m
           <!-- Developer Card -->
           <div class="col-md-4">
             <div class="card bg-gradient bg-dark text-light text-center p-4 shadow-lg border-0 rounded-4 h-100">
-              <img src="pics/BEFAAA42-D145-4DE0-8BA6-FE14422A24EF_1_201_a.jpeg"
-                class="rounded-circle mx-auto mt-2 shadow-sm border border-secondary" width="100" height="100"
-                alt="Amit Garg">
-
-              <h5 class="mt-3 fw-semibold text-light">Developed By</h5>
+              <img src="pics/BEFAAA42-D145-4DE0-8BA6-FE14422A24EF_1_201_a.jpeg" class="rounded-circle mx-auto mt-2  "
+                width="100" height="100" alt="Developer">
+              <h5 class="mt-3 fw-semibold text-#F5FFFA">Developed By</h5>
               <p class="text-white-50 fs-5 mb-1 fw-medium">Amit Garg</p>
-
               <p class="small text-light px-3">
                 Bridging creativity and code with passion and precision.<br>
-                From smooth frontends to robust backend logic — Amit crafted
-                <span class="text-info fw-semibold">Lanceix</span> with heart, hustle, and vision.
-                
-
+                From smooth frontends to robust backend logic — Amit crafted <span
+                  class="text-info fw-semibold">Lanceix</span> with heart, hustle, and vision.
               </p>
-            
-              <div class="mt-2">
+              <div class="mt-1">
                 <i class="fab fa-html5 text-danger me-2"></i>
                 <i class="fab fa-css3-alt text-primary me-2"></i>
                 <i class="fab fa-js text-warning me-2"></i>
                 <i class="fab fa-node text-success me-2"></i>
                 <i class="fas fa-database text-info me-2"></i>
-                <br>
-                <br>
-                
               </div>
             </div>
           </div>
 
-          <!-- Reach Us Section -->
-          <div class="container my-5" id="contact">
-            <div class="text-center mb-2">
-              <h2 class="fw-bold text-white">Reach Us</h2>
-              <p class="text-secondary">Let’s connect and grow together</p>
-            </div>
+        </div>
+      </div>
 
-            <div class="row g-4">
+      <!-- Reach Us Section -->
+      <div class="container my-5" id="contact">
+        <div class="text-center mb-2">
+          <h2 class="fw-bold text-white">Reach Us</h2>
+          <p class="text-secondary">Let’s connect and grow together</p>
+        </div>
 
-              <!-- Contact Info -->
-              <div class="col-md-4">
-                <div class="bg-dark text-light p-4 rounded-4 shadow-sm h-100">
-                  <h5 class="text-info mb-3">Contact Details</h5>
-                  <p>
-                    <i class="fas fa-envelope text-warning me-2"></i>
-                    <a href="mailto:garg2422005@gmail.com"
-                      class="text-decoration-none text-light">garg2422005@gmail.com</a>
-                  </p>
-                  <p>
-                    <i class="fas fa-phone text-success me-2"></i>
-                    <span class="text-light">+91-9779936834</span>
-                  </p>
-                  <p>
-                    <i class="fab fa-instagram text-danger me-2"></i>
-                    <a href="https://www.instagram.com/amit_garg_024" target="_blank"
-                      class="text-decoration-none text-light">Instagram</a>
-                  </p>
-                  <p>
-                    <i class="fab fa-linkedin text-primary me-2"></i>
-                    <a href="https://www.linkedin.com/in/amit-garg-76885a2a9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-                      target="_blank" class="text-decoration-none text-light">LinkedIn</a>
-                  </p>
-                </div>
-              </div>
+        <div class="row g-4">
 
-              <!-- Google Maps -->
-              <div class="col-md-8">
-                <div class="rounded-4 overflow-hidden shadow-sm h-100">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3444.2572457665788!2d75.2357250757785!3d30.315199905691262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3910c405649b9c6f%3A0x619d2af5acd9a5c1!2sCollege%20of%20Engineering%20%26%20Management%2C%20Punjabi%20University%20Neighbourhood%20Campus%2C%20Rampura%20Phul!5e0!3m2!1sen!2sin!4v1753601809866!5m2!1sen!2sin"
-                    width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-                  </iframe>
-                </div>
-              </div>
-
+          <!-- Contact Info -->
+          <div class="col-md-4">
+            <div class="bg-dark text-light p-4 rounded-4 shadow-sm h-100">
+              <h5 class="text-info mb-3">Contact Details</h5>
+              <p>
+                <i class="fas fa-envelope text-warning me-2"></i>
+                <a href="mailto:garg2422005@gmail.com" class="text-decoration-none text-light">garg2422005@gmail.com</a>
+              </p>
+              <p>
+                <i class="fas fa-phone text-success me-2"></i>
+                <span class="text-light">+91-9779936834</span>
+              </p>
+              <p>
+                <i class="fab fa-instagram text-danger me-2"></i>
+                <a href="https://www.instagram.com/amit_garg_024" target="_blank"
+                  class="text-decoration-none text-light">Instagram</a>
+              </p>
+              <p>
+                <i class="fab fa-linkedin text-primary me-2"></i>
+                <a href="https://www.linkedin.com/in/amit-garg-76885a2a9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                  target="_blank" class="text-decoration-none text-light">LinkedIn</a>
+              </p>
             </div>
           </div>
-          <!-- Feedback Section -->
-          <div class="container my-5" id="feedback">
-            <div class="text-center mb-3">
-              <h2 class="fw-bold text-white">Your Feedback</h2>
-              <p class="text-secondary">Players and Organizers can share suggestions to improve Lanceix 🚀</p>
+
+          <!-- Google Maps -->
+          <div class="col-md-8">
+            <div class="rounded-4 overflow-hidden shadow-sm h-100">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3444.2572457665788!2d75.2357250757785!3d30.315199905691262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3910c405649b9c6f%3A0x619d2af5acd9a5c1!2sCollege%20of%20Engineering%20%26%20Management%2C%20Punjabi%20University%20Neighbourhood%20Campus%2C%20Rampura%20Phul!5e0!3m2!1sen!2sin!4v1753601809866!5m2!1sen!2sin"
+                width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+              </iframe>
             </div>
-
-            <form action="mailto:garg2422005@gmail.com" method="POST" enctype="text/plain"
-              class="p-4 rounded-4 shadow-lg bg-dark text-light">
-
-              <!-- First & Last Name -->
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="fnameFeedback" class="form-label">First Name</label>
-                  <input type="text" class="form-control bg-dark text-light" id="fnameFeedback" name="First Name"
-                    required>
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label for="lnameFeedback" class="form-label">Last Name</label>
-                  <input type="text" class="form-control bg-dark text-light" id="lnameFeedback" name="Last Name"
-                    required>
-                </div>
-              </div>
-
-              <!-- Email -->
-              <div class="mb-3">
-                <label for="emailFeedback" class="form-label">Email</label>
-                <input type="email" class="form-control bg-dark text-light" id="emailFeedback" name="Email" required>
-              </div>
-
-              <!-- Feedback Message -->
-              <div class="mb-3">
-                <label for="feedbackText" class="form-label">Your Feedback / Suggestions</label>
-                <textarea class="form-control bg-dark text-light" id="feedbackText" name="Feedback" rows="4"
-                  required></textarea>
-              </div>
-
-              <!-- Submit -->
-              <button type="submit" class="btn text-white fw-semibold"
-                style="background: linear-gradient(135deg, #292929, #021424); border: none;  ">
-                Send Feedback
-              </button>
-            </form>
           </div>
+
+        </div>
+      </div>
+      <!-- Feedback Section -->
+      <div class="container my-5" id="feedback">
+        <div class="text-center mb-3">
+          <h2 class="fw-bold text-white">Your Feedback</h2>
+          <p class="text-secondary">Players and Organizers can share suggestions to improve Lanceix 🚀</p>
+        </div>
+
+        <form action="mailto:garg2422005@gmail.com" method="POST" enctype="text/plain"
+          class="p-4 rounded-4 shadow-lg bg-dark text-light">
+          
+          <!-- First & Last Name -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="fnameFeedback" class="form-label">First Name</label>
+              <input type="text" class="form-control bg-dark text-light" id="fnameFeedback" name="First Name" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="lnameFeedback" class="form-label">Last Name</label>
+              <input type="text" class="form-control bg-dark text-light" id="lnameFeedback" name="Last Name" required>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="mb-3">
+            <label for="emailFeedback" class="form-label">Email</label>
+            <input type="email" class="form-control bg-dark text-light" id="emailFeedback" name="Email" required>
+          </div>
+
+          <!-- Feedback Message -->
+          <div class="mb-3">
+            <label for="feedbackText" class="form-label">Your Feedback / Suggestions</label>
+            <textarea class="form-control bg-dark text-light" id="feedbackText" name="Feedback" rows="4"
+              required></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn text-white fw-semibold"
+            style="background: linear-gradient(135deg, #292929, #021424); border: none;  ">
+            Send Feedback
+          </button>
+        </form>
+      </div>
   </main>
-  <footer class=" bg-dark text-secondary text-center py-3 mb-0 mt-0w border-top border-secondary">
+  <footer class=" bg-dark text-secondary text-center py-3 mt-auto border-top border-secondary">
     <small>&copy; 2025 <span class="text-light fw-semibold">Lanceix</span>. All Rights Reserved.</small>
   </footer>
 
@@ -950,11 +938,11 @@ m
               <span id="loginpwd"></span>
             </div>
 
-
+        
 
             <!-- Modal Footer -->
             <div class="modal-footer">
-              <input type="button" value="Login" id="chkwithdb" class="btn text-white fw-semibold"
+              <input type="button" value="Login"   id="chkwithdb" class="btn text-white fw-semibold"
                 style="width: 90px;margin-top: 15px; background: linear-gradient(135deg, #0d1b2a, #1b263b); border: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
             </div>
           </form>
