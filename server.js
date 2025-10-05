@@ -105,18 +105,111 @@ app.get("/get-Signup", function (req, resp) {
     let emailid = req.query.txtEmail;
     let regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     let regexpwd = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}/;
-   
+
     let pwd = req.query.txtPwd;
     let utype = req.query.utype;
 
     if (emailid != "" && pwd != "" && (utype == "Player" || utype == "Organizer")) {
         if (regex.test(emailid) == true && regexpwd.test(pwd) == true && (utype == "Player" || utype == "Organizer")) {
             mySqlVen.query("insert into users values(?,?,?,current_date(),1)", [emailid, pwd, utype], function (errKuch, allRecords) {
+
                 if (errKuch == null) {
-                resp.send(allRecords[0].utype);
+                    if (utype == "Player") {
+                        resp.send(utype);
+                        // nodemailer
+                        const transporter = nodemailer.createTransport({
+                            service: 'gmail', // You can also use other providers like Outlook, Yahoo, etc.
+                            auth: {
+                                user: 'garg2422005@gmail.com',
+                                pass: 'wrxm kbmj aipz wmrp', // Use App Passwords or OAuth2 for Gmail
+                            },
+                        });
+
+                        // Define the email options
+
+                        const mailOptions = {
+
+
+                            from: 'garg2422005@gmail.com',
+                            to: emailid,
+                            subject: 'Welcome to Lanceix – Let the Games Begin! 🏆',
+                            html: `
+      <p>Hi <strong>${emailid}</strong>,</p>
+      <p>Welcome to <strong>Lanceix</strong>, your personal gateway to exciting sports tournaments around you!</p>
+      <p>As a player, you can now:</p>
+      <ul>
+        <li>Explore and register for live sports events</li>
+        <li>Track your participation and performance</li>
+        <li>Connect with organizers and fellow athletes</li>
+      </ul>
+      <p>We're glad to have you on board. Let the games begin! 🏆</p>
+      <p><a href="https://lanceix.onrender.com">Explore Events Now</a></p>
+      <br>
+      <p>Team Lanceix</p>
+    `
+                        };
+
+                        // Send the email
+                        transporter.sendMail(mailOptions, function (error, info) {
+                            if (error) {
+                                console.log('Error occurred:', error);
+                            } else {
+                                console.log('Email sent:' + info.response);
+                            }
+                        });
+
+
+                    }
+                    else {
+                        resp.send(utype);
+                        // nodemailer for organizer
+                        const transporter = nodemailer.createTransport({
+                            service: 'gmail', // You can also use other providers like Outlook, Yahoo, etc.
+                            auth: {
+                                user: 'garg2422005@gmail.com',
+                                pass: 'wrxm kbmj aipz wmrp', // Use App Passwords or OAuth2 for Gmail
+                            },
+                        });
+
+                        // Define the email options
+
+                        const mailOptions = {
+
+
+                            from: 'garg2422005@gmail.com',
+                            to: emailid,
+                            subject: 'Welcome to Lanceix – Start Hosting Your Tournaments Today! 🗓️',
+                            html: `
+      <p>Hi <strong>${emailid}</strong>,</p>
+      <p>Welcome to <strong>Lanceix</strong>, the platform built to simplify your tournament management!</p>
+      <p>As an organizer, you can now:</p>
+      <ul>
+        <li>Create and publish sports tournaments</li>
+        <li>Manage registrations and participant details</li>
+        <li>Reach the right players in your city</li>
+      </ul>
+      <p>We’re excited to support your journey. Let’s bring more sports to life! ⚽🏸🏀</p>
+      <p><a href="https://lanceix.onrender.com">Post Your First Event</a></p>
+      <br>
+      <p>Team Lanceix</p>
+    `
+                        };
+
+                        // Send the email
+                        transporter.sendMail(mailOptions, function (error, info) {
+                            if (error) {
+                                console.log('Error occurred:', error);
+                            } else {
+                                console.log('Email sent:' + info.response);
+                            }
+                        });
+
+
+
+                    }
                 }
                 else
-                    resp.send(err);
+                    resp.send(errKuch.message);
             })
         }
         else {
@@ -146,7 +239,91 @@ app.get("/do-Login", function (req, resp) {
                 resp.send("Blocked");
             }
             else
-                resp.send(allRecords[0].utype);
+            {
+                if (allRecords[0].utype == "Player") {
+                        resp.send(allRecords[0].utype);
+                        // nodemailer
+                        const transporter = nodemailer.createTransport({
+                            service: 'gmail', // You can also use other providers like Outlook, Yahoo, etc.
+                            auth: {
+                                user: 'garg2422005@gmail.com',
+                                pass: 'wrxm kbmj aipz wmrp', // Use App Passwords or OAuth2 for Gmail
+                            },
+                        });
+
+                        // Define the email options
+
+                        const mailOptions = {
+ 
+
+                            from: 'garg2422005@gmail.com',
+                            to: emailid,
+                            subject: 'Welcome Back, Player! 🎮 – Lanceix Login Successful',
+                            html:  `
+      <p>Hi <strong>${emailid}</strong>,</p>
+      <p>You’ve successfully logged into your Lanceix Player account.</p>
+      <p>Check out new tournaments, track your performance, and join the action!</p>
+      <p><a href="https://lanceix.onrender.com">Go to Your Dashboard</a></p>
+      <br>
+      <p>Play hard, win big! 🏆</p>
+      <p>– Team Lanceix</p>
+    `
+                        };
+
+                        // Send the email
+                        transporter.sendMail(mailOptions, function (error, info) {
+                            if (error) {
+                                console.log('Error occurred:', error);
+                            } else {
+                                console.log('Email sent:' + info.response);
+                            }
+                        });
+
+
+                    }
+                    else {
+                        resp.send(allRecords[0].utype);
+                        // nodemailer for organizer
+                        const transporter = nodemailer.createTransport({
+                            service: 'gmail', // You can also use other providers like Outlook, Yahoo, etc.
+                            auth: {
+                                user: 'garg2422005@gmail.com',
+                                pass: 'wrxm kbmj aipz wmrp', // Use App Passwords or OAuth2 for Gmail
+                            },
+                        });
+
+                        // Define the email options
+
+                        const mailOptions = {
+
+
+                            from: 'garg2422005@gmail.com',
+                            to: emailid,
+                            subject: 'Organizer Login Successful – Welcome Back to Lanceix ',
+                            html:  `
+      <p>Hi <strong>${emailid}</strong>,</p>
+      <p>You’ve successfully logged into your Lanceix Organizer account.</p>
+      <p>Ready to manage your tournaments, view participants, and plan your next event?</p>
+      <p><a href="https://lanceix.onrender.com">Open Organizer Dashboard</a></p>
+      <br>
+      <p>Wishing you great events ahead! 🎯</p>
+      <p>– Team Lanceix</p>
+    `
+                        };
+
+                        // Send the email
+                        transporter.sendMail(mailOptions, function (error, info) {
+                            if (error) {
+                                console.log('Error occurred:', error);
+                            } else {
+                                console.log('Email sent:' + info.response);
+                            }
+                        });
+
+
+
+                    }
+            }
 
         }
 
@@ -156,7 +333,7 @@ app.get("/do-Login", function (req, resp) {
 // check email for signup
 app.get("/chk-email", function (req, resp) {
     let regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    let email = req.query.txtEmail1;
+    let email = req.query.txtEmail;
 
     mySqlVen.query("select * from users where emailid=?", [email], function (err, allRecords) {
         if (allRecords.length == 0 && regex.test(email) == true)
@@ -355,7 +532,7 @@ app.get("/get-to-server", function (req, resp) {
 
     let email = req.query.txtEmail3;
     let event = req.query.Event;
-    let doe = req.query.date('dd MMMM yyyy');
+    let doe = req.query.date;
     let toe = req.query.Time;
     let address = req.query.txtAddress;
     let city = req.query.city;
@@ -553,8 +730,7 @@ app.post("/server-profile", async function (req, resp) {
                     if (errKuch == null)
                         resp.send("Send Successfully");
                     else
-                        // resp.send(errKuch.message);
-                    resp.send( "retry to upload something happen else!");
+                        resp.send(errKuch.message);
                 })
 
             });
@@ -619,7 +795,7 @@ app.post("/Modify-profile", async function (req, resp) {
     else
         picurl = "nopic.jpg";
 
- 
+
 
     let emailid = req.body.txtEmail5;
     let profilepicurl = picurl;
@@ -750,5 +926,3 @@ app.get("/do-settings", function (req, resp) {
     })
 })
 // ================================================================================================
-
-
