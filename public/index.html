@@ -37,8 +37,9 @@
           data: {
             txtEmail: $("#txtEmail").val(),
             txtPwd: $("#txtPwd").val(),
-            utype: $("#utype").val()
-
+            utype: $("#utype").val(),
+            firstName: $("#firstName").val(),
+            lastName: $("#lastName").val()
           }
         }
 
@@ -115,7 +116,7 @@
         let pwd = $(this).val();
 
         if (regex.test(pwd) == true) {
-          $("#errPwd").html("Valid").removeClass().addClass("text-success");
+          $("#errPwd").html("").removeClass().addClass("text-success");
         }
         else {
           $("#errPwd").html("Use at least 8 characters with an uppercase letter, number, and symbol.").removeClass().addClass("text-danger");

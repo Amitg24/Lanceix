@@ -108,10 +108,14 @@ app.get("/get-Signup", function (req, resp) {
 
     let pwd = req.query.txtPwd;
     let utype = req.query.utype;
+    let fname=req.query.firstName;
+    let lname=req.query.lastName;
+    console.log(fname);
 
     if (emailid != "" && pwd != "" && (utype == "Player" || utype == "Organizer")) {
         if (regex.test(emailid) == true && regexpwd.test(pwd) == true && (utype == "Player" || utype == "Organizer")) {
-            mySqlVen.query("insert into users values(?,?,?,current_date(),1)", [emailid, pwd, utype], function (errKuch, allRecords) {
+            mySqlVen.query("insert into users values(?,?,?,?,?,current_date(),1)", [emailid,fname,lname,pwd, utype], function (errKuch, allRecords) {
+                console.log(utype);
 
                 if (errKuch == null) {
                     if (utype == "Player") {
@@ -192,7 +196,7 @@ app.get("/get-Signup", function (req, resp) {
       <p><a href="https://lanceix.onrender.com">Post Your First Event</a></p>
       <br>
       <p>Team Lanceix</p>
-    `
+     `
                         };
 
                         // Send the email
