@@ -929,4 +929,23 @@ app.get("/do-settings", function (req, resp) {
             resp.send(errKuch);
     })
 })
+// -----Feedback section------
+app.post('/feedback', async (req, res) => {
+  const { firstName, lastName, email, feedback } = req.body;
+
+  try {
+    await transporter.sendMail({
+      from: `"${firstName} ${lastName}" <${email}>`,
+      to: 'garg2422005@gmail.com', // Recipient: site admin
+      subject: 'Lanceix Feedback',
+      text: feedback,
+      html: `<strong>From:</strong> ${firstName} ${lastName} <br/>
+             <strong>Email:</strong> ${email} <br/><br/>
+             <strong>Feedback:</strong><br/>${feedback}`,
+    });
+    res.status(200).send('Feedback sent successfully!');
+  } catch (err) {
+    res.status(500).send('Failed to send feedback.');
+  }
+});
 // ================================================================================================

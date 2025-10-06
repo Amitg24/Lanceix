@@ -82,6 +82,30 @@
 
 
       })
+      // --------------------------------feedback section
+      $("#submitfeedback").click(function () {
+        let obj = {
+          type: "post",
+          url: "/feedback",
+          data: {
+            firstName: $("#fnameFeedback").val(),
+            lastName: $("#lnameFeedback").val(),
+            email: $("#emailFeedback").val(),
+            feedback: $("#feedbackText").val()
+          }
+        }
+        $.ajax(obj).then(
+          function (resp) {
+            if (resp == "Success") {
+              alert("Thank you for your feedback!");
+              location.reload();
+            }
+            else
+              alert("Error in sending feedback. Please try again later.");
+
+          }).fail(function (err) { alert(err.message) })
+      })
+      // ============================================================================
       // ----------------------signup email
       $("#txtEmail").blur(function () {
         let obj = {
@@ -792,9 +816,7 @@
           <p class="text-secondary">Players and Organizers can share suggestions to improve Lanceix 🚀</p>
         </div>
 
-        <form action="mailto:garg2422005@gmail.com" method="POST" enctype="text/plain"
-          class="p-4 rounded-4 shadow-lg bg-dark text-light">
-
+        <form action="/feedback" method="POST" enctype="multipart/form-data">
           <!-- First & Last Name -->
           <div class="row">
             <div class="col-md-6 mb-3">
@@ -821,7 +843,7 @@
           </div>
 
           <!-- Submit -->
-          <button type="submit" class="btn text-white fw-semibold"
+          <button type="button" value="Submit" id="submitfeedback" class="btn text-white fw-semibold"
             style="background: linear-gradient(135deg, #292929, #021424); border: none;">
             Send Feedback
           </button>
