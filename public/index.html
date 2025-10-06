@@ -442,6 +442,57 @@
       flex: 1;
     }
   </style>
+  <!-- for feedback -->
+   <style>
+  /* Custom styles for feedback section */
+  #feedback {
+    background: #121212;
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    max-width: 700px;
+    margin: auto;
+  }
+
+  #feedback label {
+    color: #bbb;
+    font-weight: 600;
+  }
+
+  #feedback input::placeholder,
+  #feedback textarea::placeholder {
+    color: #888;
+  }
+
+  #submitfeedback {
+    background: linear-gradient(135deg, #004e92, #000428);
+    transition: background 0.3s ease;
+    border-radius: 8px;
+    padding: 0.6rem 1.5rem;
+  }
+
+  #submitfeedback:hover {
+    background: linear-gradient(135deg, #0066cc, #003366);
+  }
+
+  #feedback .form-control {
+    border-radius: 8px;
+    border: 1px solid #444;
+  }
+#feedback .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+  }
+
+  #feedback h2 {
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  #feedback p {
+    font-size: 1.05rem;
+  }
+</style>
+
   <!-- for bact to top -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -809,44 +860,44 @@
 
         </div>
       </div>
-      <!-- Feedback Section -->
+      <!-- feedback  -->
       <div class="container my-5" id="feedback">
-        <div class="text-center mb-3">
+        <div class="text-center mb-4">
           <h2 class="fw-bold text-white">Your Feedback</h2>
           <p class="text-secondary">Players and Organizers can share suggestions to improve Lanceix 🚀</p>
         </div>
 
         <form action="/feedback" method="POST" enctype="multipart/form-data">
-          <!-- First & Last Name -->
-          <div class="row">
-            <div class="col-md-6 mb-3">
+          <div class="row g-3">
+            <div class="col-md-6">
               <label for="fnameFeedback" class="form-label">First Name</label>
-              <input type="text" class="form-control bg-dark text-light" id="fnameFeedback" name="First Name" required>
+              <input type="text" class="form-control bg-dark text-light" id="fnameFeedback" name="First Name"
+                placeholder="Enter your first name" required>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-6">
               <label for="lnameFeedback" class="form-label">Last Name</label>
-              <input type="text" class="form-control bg-dark text-light" id="lnameFeedback" name="Last Name" required>
+              <input type="text" class="form-control bg-dark text-light" id="lnameFeedback" name="Last Name"
+                placeholder="Enter your last name" required>
             </div>
           </div>
 
-          <!-- Email -->
-          <div class="mb-3">
+          <div class="mb-3 mt-3">
             <label for="emailFeedback" class="form-label">Email</label>
-            <input type="email" class="form-control bg-dark text-light" id="emailFeedback" name="Email" required>
+            <input type="email" class="form-control bg-dark text-light" id="emailFeedback" name="Email"
+              placeholder="example@mail.com" required>
           </div>
 
-          <!-- Feedback Message -->
-          <div class="mb-3">
+          <div class="mb-4">
             <label for="feedbackText" class="form-label">Your Feedback / Suggestions</label>
-            <textarea class="form-control bg-dark text-light" id="feedbackText" name="Feedback" rows="4"
-              required></textarea>
+            <textarea class="form-control bg-dark text-light" id="feedbackText" name="Feedback" rows="5"
+              placeholder="Write your feedback here..." required></textarea>
           </div>
 
-          <!-- Submit -->
-          <button type="button" value="Submit" id="submitfeedback" class="btn text-white fw-semibold"
-            style="background: linear-gradient(135deg, #292929, #021424); border: none;">
-            Send Feedback
-          </button>
+          <div class="text-center">
+            <button type="button" id="submitfeedback" class="btn text-white fw-semibold">
+              Send Feedback
+            </button>
+          </div>
         </form>
       </div>
 
