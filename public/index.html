@@ -270,12 +270,14 @@
               alert("You are Blocked");
             else
               if (resp.utype == "Player") {
-                localStorage.setItem("activeUser", resp.fname + " " + resp.lname)
+                 localStorage.setItem("activeUser", $("#txtEmail1").val())
+                localStorage.setItem("activeUser1", resp.fname + " " + resp.lname)
                 location.href = "dash-Player.html";
               }
               else
                 if (resp.utype == "Organizer") {
-                  localStorage.setItem("activeUser", resp.fname + " " + resp.lname)
+                  localStorage.setItem("activeUser", $("#txtEmail1").val())
+                  localStorage.setItem("activeUser1", resp.fname + " " + resp.lname)
 
                   location.href = "dash-organizer.html";
                 }
@@ -283,8 +285,9 @@
 
                   if (resp.utype == "Admin") {
                     location.href = "dash-admin.html";
+                     localStorage.setItem("activeUser", $("#txtEmail1").val())
 
-                    localStorage.setItem("activeUser", resp.fname + " " + resp.lname)
+                    localStorage.setItem("activeUser1", resp.fname + " " + resp.lname)
 
                      
                   }
