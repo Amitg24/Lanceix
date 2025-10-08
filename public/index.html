@@ -48,30 +48,39 @@
           function (resp) {
             if (resp == "Invalid") {
               if ($("#txtEmail").val() != "") {
-                if ($("#txtPwd").val() != "") {
-                  if ($("#utype").val() == "Player" || $("#utype").val() == "Organizer") {
-                    $("#errutype").html("").removeClass();
+                if ($("#firstName").val() != "") {
+                  if ($("#lastName").val() != "") {
+
+                    if ($("#txtPwd").val() != "") {
+                      if ($("#utype").val() == "Player" || $("#utype").val() == "Organizer") {
+                        $("#errutype").html("").removeClass();
 
 
+                      }
+                      else
+                        $("#errutype").html("required").removeClass().addClass("text-danger");
+
+                    }
+                    else
+                      $("#errPwd").html("password required").removeClass().addClass("text-danger");
                   }
                   else
-                    $("#errutype").html("required").removeClass().addClass("text-danger");
-
+                    $("#errLname").html("Last Name required").removeClass().addClass("text-danger");
                 }
                 else
-                  $("#errPwd").html("password required").removeClass().addClass("text-danger");
+                  $("#errFname").html("First Name required").removeClass().addClass("text-danger");
               }
               else
                 $("#errEmail").html("Email ID required").removeClass().addClass("text-danger");
             }
             else {
               if (resp == "Player") {
-                localStorage.setItem("activeUser", $("#txtEmail").val())
+                localStorage.setItem("activeUser",$("#txtEmail").val())
                 location.href = "dash-Player.html";
               }
               else
                 if (resp == "Organizer") {
-                  localStorage.setItem("activeUser", $("#txtEmail").val())
+                  localStorage.setItem("activeUser",$("#txtEmail").val())
 
                   location.href = "dash-organizer.html";
                 }
@@ -82,30 +91,7 @@
 
 
       })
-      // --------------------------------feedback section
-      $("#submitfeedback").click(function () {
-        let obj = {
-          type: "post",
-          url: "/feedback",
-          data: {
-            firstName: $("#fnameFeedback").val(),
-            lastName: $("#lnameFeedback").val(),
-            email: $("#emailFeedback").val(),
-            feedback: $("#feedbackText").val()
-          }
-        }
-        $.ajax(obj).then(
-          function (resp) {
-            if (resp == "Success") {
-              alert("Thank you for your feedback!");
-              location.reload();
-            }
-            else
-              alert("Error in sending feedback. Please try again later.");
 
-          }).fail(function (err) { alert(err.message) })
-      })
-      // ============================================================================
       // ----------------------signup email
       $("#txtEmail").blur(function () {
         let obj = {
@@ -118,13 +104,11 @@
         }
         $.ajax(obj).then(function (response) {
           // alert(response)
-          $("#errEmail").text(response);
-
-          if (response == "Valid") {
-            $("#errEmail").removeClass().addClass("text-success");
-          }
+          if (response == "Invalid")
+            $("#loginemail").html("Invalid EmailID").removeClass().addClass("text-danger");
           else {
-            $("#errEmail").removeClass().addClass("text-danger");
+            $("#loginemail").html("").removeClass().addClass("text-danger");
+            // $("#utypeDisplay").html("User Type: <b>" + response + "</b>");
           }
 
         }).fail(function (err) {
@@ -285,22 +269,24 @@
             if (resp == "Blocked")
               alert("You are Blocked");
             else
-              if (resp == "Player") {
-                localStorage.setItem("activeUser", $("#txtEmail1").val())
+              if (resp.utype == "Player") {
+                localStorage.setItem("activeUser", resp.fname + " " + resp.lname)
                 location.href = "dash-Player.html";
               }
               else
-                if (resp == "Organizer") {
-                  localStorage.setItem("activeUser", $("#txtEmail1").val())
+                if (resp.utype == "Organizer") {
+                  localStorage.setItem("activeUser", resp.fname + " " + resp.lname)
 
                   location.href = "dash-organizer.html";
                 }
                 else
 
-                  if (resp == "Admin") {
-                    localStorage.setItem("activeUser", $("#firstName").val() + " " + $("#lastName").val())
-
+                  if (resp.utype == "Admin") {
                     location.href = "dash-admin.html";
+
+                    localStorage.setItem("activeUser", resp.fname + " " + resp.lname)
+
+                     
                   }
           }
 
@@ -309,7 +295,97 @@
         })
 
       })
+      // feedback
+      // ============================================================
+      $("#submitfeedback").click(function (e) {
+        e.preventDefault(); // Prevent default form submission
 
+        // Clear previous messages
+        $("#feedbackMsg").text('').removeClass('text-success text-danger');
+
+        // Collect form data
+        let obj = {
+          type: "get", // Ideally POST, but keeping your GET for now
+          url: "/submit-feedback",
+          data: {
+            fnameFeedback: $("#fnameFeedback").val(),
+            lnameFeedback: $("#lnameFeedback").val(),
+            emailFeedback: $("#emailFeedback").val(),
+            feedbackText: $("#feedbackText").val()
+          }
+        }
+
+        $.ajax(obj).then(function (resp) {
+          if (resp === "Invalid") {
+            $("#feedbackMsg").text("Please fill all fields").addClass("text-danger");
+          } else {
+            $("#feedbackMsg").text("Thank you for your feedback! ✅").addClass("text-success");
+
+            // Clear form fields
+            $("#fnameFeedback").val('');
+            $("#lnameFeedback").val('');
+            $("#emailFeedback").val('');
+            $("#feedbackText").val('');
+          }
+        }).fail(function (err) {
+          $("#feedbackMsg").text("Something went wrong. Please try again.").addClass("text-danger");
+          console.error(err);
+        });
+      });
+
+
+      $("#submitfeedback").click(function (e) {
+        e.preventDefault(); // Prevent form reload
+
+        // Clear previous messages
+        $("#feedbackMsg").text('').removeClass('text-success text-danger');
+
+        // Collect form data and trim
+        let fname = $("#fnameFeedback").val().trim();
+        let lname = $("#lnameFeedback").val().trim();
+        let email = $("#emailFeedback").val().trim();
+        let feedback = $("#feedbackText").val().trim();
+
+        // Front-end validation
+        if (!fname || !lname || !email || !feedback) {
+          $("#feedbackMsg").text("Please fill all fields before submitting.").addClass("text-danger");
+          return;
+        }
+
+        // Email format validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          $("#feedbackMsg").text("Please enter a valid email address.").addClass("text-danger");
+          return;
+        }
+
+        // AJAX request
+        $.ajax({
+          type: "get", // Can be changed to POST later
+          url: "/submit-feedback",
+          data: {
+            fnameFeedback: fname,
+            lnameFeedback: lname,
+            emailFeedback: email,
+            feedbackText: feedback
+          }
+        }).then(function (resp) {
+          if (resp.startsWith("Invalid") || resp.includes("email")) {
+            $("#feedbackMsg").text(resp).addClass("text-danger");
+          } else {
+            $("#feedbackMsg").text("Thank you for your feedback! ✅").addClass("text-success");
+
+            // Clear form fields
+            $("#fnameFeedback").val('');
+            $("#lnameFeedback").val('');
+            $("#emailFeedback").val('');
+            $("#feedbackText").val('');
+          }
+        }).fail(function (err) {
+          $("#feedbackMsg").text("Something went wrong. Please try again.").addClass("text-danger");
+          console.error(err);
+        });
+      });
       //---------------------------------------------------- 
 
       $(document).ajaxStart(function () {
@@ -323,23 +399,24 @@
 
   </script>
 
+
   <style>
     #waiting {
-      padding: 50px;
-      font-size: 60px;
-      color: lightgray;
-      /* border: 1px black solid; */
-      /* background-image: url(./pics/modisaab.jpg); */
-      /* background-size: contain;  */
       position: fixed;
-      left: 45%;
-      top: 40%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
       display: none;
-      text-align: center;
+      /* hidden by default */
+      z-index: 9999;
+      /* add this */
+      justify-content: center;
+      /* horizontal center */
+      align-items: center;
+      /* vertical center */
     }
-
-
-
 
     #txtpwd {
       width: 60%;
@@ -442,57 +519,6 @@
       flex: 1;
     }
   </style>
-  <!-- for feedback -->
-  <style>
-    /* Custom styles for feedback section */
-    #feedback {
-      background: #121212;
-      border-radius: 12px;
-      padding: 2.5rem 2rem;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
-      max-width: 700px;
-      margin: auto;
-    }
-
-    #feedback label {
-      color: #bbb;
-      font-weight: 600;
-    }
-
-    #feedback input::placeholder,
-    #feedback textarea::placeholder {
-      color: #888;
-    }
-
-    #submitfeedback {
-      background: linear-gradient(135deg, #004e92, #000428);
-      transition: background 0.3s ease;
-      border-radius: 8px;
-      padding: 0.6rem 1.5rem;
-    }
-
-    #submitfeedback:hover {
-      background: linear-gradient(135deg, #0066cc, #003366);
-    }
-
-    #feedback .form-control {
-      border-radius: 8px;
-      border: 1px solid #444;
-    }
-
-    #feedback .form-control:focus {
-      border-color: #007bff;
-      box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
-    }
-
-    #feedback h2 {
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-    }
-
-    #feedback p {
-      font-size: 1.05rem;
-    }
-  </style>
 
   <!-- for bact to top -->
   <script>
@@ -555,9 +581,7 @@
     }
   </style>
 
-  <div class="d-block d-md-none scrolling-text text-white bg-dark bg-opacity-75 py-2 px-3 rounded">
-    <span>👋 Welcome to Lanceix — Explore. Play. Win. 🏆</span>
-  </div>
+
 
 
 </head>
@@ -569,7 +593,9 @@
   </div>
   <button id="backToTop" title="Go to Top"><i class="fas fa-arrow-up"></i></button>
 
-
+  <div class="d-block d-md-none scrolling-text text-white bg-dark bg-opacity-75 py-2 px-3 rounded">
+    <span>👋 Welcome to Lanceix — Explore. Play. Win. 🏆</span>
+  </div>
 
   <!--Navbar -->
   <nav class="navbar navbar-dark bg-dark py-2 fixed-top">
@@ -749,7 +775,7 @@
       <div class="container my-5" id="developers">
         <div class="text-center mb-3">
           <h2 class="fw-bold text-white display-6">Meet the Developers</h2>
-          <p class="text-#F5FFFA">The minds behind <span class="text-info fw-semibold">Lanceix</span></p>
+          <p style="color: #F5FFFA;">The minds behind <span class="text-info fw-semibold">Lanceix</span></p>
         </div>
 
         <div class="row justify-content-center g-4">
@@ -762,7 +788,7 @@
                 class="rounded-circle mx-auto mt-2 shadow-sm border border-secondary" width="100" height="100"
                 alt="Mentor">
 
-              <h5 class="mt-3 fw-semibold text-#F5FFFA">Under the Guidance of</h5>
+              <h5 class="mt-3 fw-semibold" style="color: #F5FFFA;">Under the Guidance of</h5>
               <p class="text-white-50 mb-1 fs-5 fw-medium">Rajesh Bansal Sir</p>
 
               <p class="text-light small mb-1">Mentor, Guide & Support System</p>
@@ -862,43 +888,48 @@
         </div>
       </div>
       <!-- feedback  -->
-      <div class="container my-5" id="feedback">
+      <div class="container py-5" id="feedback">
         <div class="text-center mb-4">
           <h2 class="fw-bold text-white">Your Feedback</h2>
-          <p class="text-secondary">Players and Organizers can share suggestions to improve Lanceix 🚀</p>
+          <p class="text-secondary">
+            Help improve <span class="text-info fw-semibold">Lanceix</span> with your valuable suggestions 🚀
+          </p>
         </div>
 
-        <form action="/feedback" method="POST">
+        <form id="feedbackForm" class="p-4 p-md-5 rounded-4 shadow-sm bg-dark" novalidate>
           <div class="row g-3">
             <div class="col-md-6">
-              <label for="fnameFeedback" class="form-label">First Name</label>
-              <input type="text" class="form-control bg-dark text-light" id="fnameFeedback" name="firstName"
-                placeholder="Enter your first name" required>
+              <label for="fnameFeedback" class="form-label text-light">First Name</label>
+              <input type="text" class="form-control bg-secondary bg-opacity-10 text-light border-0" id="fnameFeedback"
+                placeholder="Enter first name" required>
             </div>
+
             <div class="col-md-6">
-              <label for="lnameFeedback" class="form-label">Last Name</label>
-              <input type="text" class="form-control bg-dark text-light" id="lnameFeedback" name="lastName"
-                placeholder="Enter your last name" required>
+              <label for="lnameFeedback" class="form-label text-light">Last Name</label>
+              <input type="text" class="form-control bg-secondary bg-opacity-10 text-light border-0" id="lnameFeedback"
+                placeholder="Enter last name" required>
             </div>
           </div>
 
-          <div class="mb-3 mt-3">
-            <label for="emailFeedback" class="form-label">Email</label>
-            <input type="email" class="form-control bg-dark text-light" id="emailFeedback" name="email"
-              placeholder="example@mail.com" required>
+          <div class="mt-3">
+            <label for="emailFeedback" class="form-label text-light">Email</label>
+            <input type="email" class="form-control bg-secondary bg-opacity-10 text-light border-0" id="emailFeedback"
+              placeholder="you@example.com" required>
           </div>
 
-          <div class="mb-4">
-            <label for="feedbackText" class="form-label">Your Feedback / Suggestions</label>
-            <textarea class="form-control bg-dark text-light" id="feedbackText" name="feedback" rows="5"
-              placeholder="Write your feedback here..." required></textarea>
+          <div class="mt-3">
+            <label for="feedbackText" class="form-label text-light">Your Feedback / Suggestions</label>
+            <textarea class="form-control bg-secondary bg-opacity-10 text-light border-0" id="feedbackText" rows="4"
+              placeholder="Write your feedback here...  " required></textarea>
           </div>
 
-          <div class="text-center">
-            <button type="button" id="submitfeedback" class="btn text-white fw-semibold">
-              Send Feedback
+          <div class="text-center mt-4">
+            <button type="submit" id="submitfeedback" class="btn btn-info fw-semibold text-dark px-5">
+              <i class="fas fa-paper-plane me-2"></i>Send Feedback
             </button>
           </div>
+
+          <div id="feedbackMsg" class="text-center mt-3 fw-semibold text-info"></div>
         </form>
       </div>
 
@@ -931,7 +962,6 @@
             <div class="mb-3">
               <label for="txtEmail" class="form-label">Email ID</label>
               <input type="email" class="form-control" id="txtEmail" name="txtEmail" required>
-              <div class="invalid-feedback">Please enter a valid email.</div>
               <span id="errEmail"></span>
             </div>
 
@@ -940,14 +970,12 @@
               <div class="col-md-6 mb-3">
                 <label for="firstName" class="form-label">First Name</label>
                 <input type="text" class="form-control" id="firstName" name="firstName" required>
-                <div class="invalid-feedback">Please enter your first name.</div>
-                <span id="errFirstName"></span>
+                <span id="errFname"></span>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="lastName" class="form-label">Last Name</label>
                 <input type="text" class="form-control" id="lastName" name="lastName" required>
-                <div class="invalid-feedback">Please enter your last name.</div>
-                <span id="errLastName"></span>
+                <span id="errLname"></span>
               </div>
             </div>
 
@@ -959,7 +987,6 @@
                   required>
                 <i class="fa-solid fa-eye" id="eye"
                   style="position: absolute; top: 50%; right: 12px; transform: translateY(-50%); cursor: pointer; color: #666;"></i>
-                <div class="invalid-feedback">Please enter a password.</div>
               </div>
               <span id="errPwd"></span>
             </div>
@@ -972,7 +999,6 @@
                 <option value="Player">Player</option>
                 <option value="Organizer">Organizer</option>
               </select>
-              <div class="invalid-feedback">Please select a user type.</div>
               <span id="errutype"></span>
             </div>
 
@@ -1008,7 +1034,6 @@
             <div class="mb-3">
               <label for="txtEmail1" class="form-label">Email ID</label>
               <input type="email" class="form-control" id="txtEmail1" name="txtEmail1" required>
-              <div class="invalid-feedback">Please enter a valid email.</div>
               <span id="loginemail"></span>
             </div>
 
@@ -1020,7 +1045,6 @@
                   required>
                 <i class="fa-solid fa-eye" id="eye1"
                   style="position: absolute; top: 50%; right: 12px; transform: translateY(-50%); cursor: pointer; color: #666;"></i>
-                <div class="invalid-feedback">Please enter your password.</div>
               </div>
               <span id="loginpwd"></span>
             </div>
