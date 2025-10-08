@@ -271,13 +271,13 @@
             else
               if (resp.utype == "Player") {
                  localStorage.setItem("activeUser", $("#txtEmail1").val())
-                localStorage.setItem("activeUser1", resp.fname + " " + resp.lname)
+                localStorage1.setItem("activeUser1", resp.fname + " " + resp.lname)
                 location.href = "dash-Player.html";
               }
               else
                 if (resp.utype == "Organizer") {
                   localStorage.setItem("activeUser", $("#txtEmail1").val())
-                  localStorage.setItem("activeUser1", resp.fname + " " + resp.lname)
+                  localStorage1.setItem("activeUser1", resp.fname + " " + resp.lname)
 
                   location.href = "dash-organizer.html";
                 }
@@ -287,7 +287,7 @@
                     location.href = "dash-admin.html";
                      localStorage.setItem("activeUser", $("#txtEmail1").val())
 
-                    localStorage.setItem("activeUser1", resp.fname + " " + resp.lname)
+                    localStorage1.setItem("activeUser1", resp.fname + " " + resp.lname)
 
                      
                   }
