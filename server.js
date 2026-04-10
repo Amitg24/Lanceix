@@ -5,6 +5,7 @@ const nodemailer = require('nodemailer');
 var mysql2 = require("mysql2");
 var fs = require("fs");
 
+
 var app = express();//app() returns an Object:app
 app.use(fileuploader());//for receiving files from client and save on server files
 
@@ -14,6 +15,8 @@ app.listen(2005, function () {
 })
 
 app.use(express.static("public"));
+app.use(express.urlencoded(true)); // convert POST data to JSON object
+app.use(express.json());
 
 // app.get("/", function (req, resp) {
 //     console.log(__dirname);
@@ -108,15 +111,112 @@ app.get("/get-Signup", function (req, resp) {
 
     let pwd = req.query.txtPwd;
     let utype = req.query.utype;
+    let fname = req.query.firstName;
+    let lname = req.query.lastName;
+    console.log(fname);
 
     if (emailid != "" && pwd != "" && (utype == "Player" || utype == "Organizer")) {
         if (regex.test(emailid) == true && regexpwd.test(pwd) == true && (utype == "Player" || utype == "Organizer")) {
-            mySqlVen.query("insert into users values(?,?,?,current_date(),1)", [emailid, pwd, utype], function (errKuch, allRecords) {
+            mySqlVen.query("insert into users values(?,?,?,?,?,current_date(),1)", [emailid, fname, lname, pwd, utype], function (errKuch, allRecords) {
+                console.log(utype);
+
                 if (errKuch == null) {
-                    resp.send(allRecords[0].utype);
+                    if (utype == "Player") {
+                        resp.send(utype);
+                        // nodemailer
+                        const transporter = nodemailer.createTransport({
+                            service: 'gmail', // You can also use other providers like Outlook, Yahoo, etc.
+                            auth: {
+                                user: 'garg2422005@gmail.com',
+                                pass: 'wrxm kbmj aipz wmrp', // Use App Passwords or OAuth2 for Gmail
+                            },
+                        });
+
+                        // Define the email options
+
+                        const mailOptions = {
+
+
+                            from: 'garg2422005@gmail.com',
+                            to: emailid,
+                            subject: 'Welcome to Lanceix – Let the Games Begin! 🏆',
+                            html: `
+      <p>Hi <strong>${emailid}</strong>,</p>
+      <p>Welcome to <strong>Lanceix</strong>, your personal gateway to exciting sports tournaments around you!</p>
+      <p>As a player, you can now:</p>
+      <ul>
+        <li>Explore and register for live sports events</li>
+        <li>Track your participation and performance</li>
+        <li>Connect with organizers and fellow athletes</li>
+      </ul>
+      <p>We're glad to have you on board. Let the games begin! 🏆</p>
+      <p><a href="https://lanceix.onrender.com">Explore Events Now</a></p>
+      <br>
+      <p>Team Lanceix</p>
+    `
+                        };
+
+                        // Send the email
+                        transporter.sendMail(mailOptions, function (error, info) {
+                            if (error) {
+                                console.log('Error occurred:', error);
+                            } else {
+                                console.log('Email sent:' + info.response);
+                            }
+                        });
+
+
+                    }
+                    else {
+                        resp.send(utype);
+                        // nodemailer for organizer
+                        const transporter = nodemailer.createTransport({
+                            service: 'gmail', // You can also use other providers like Outlook, Yahoo, etc.
+                            auth: {
+                                user: 'garg2422005@gmail.com',
+                                pass: 'wrxm kbmj aipz wmrp', // Use App Passwords or OAuth2 for Gmail
+                            },
+                        });
+
+                        // Define the email options
+
+                        const mailOptions = {
+
+
+                            from: 'garg2422005@gmail.com',
+                            to: emailid,
+                            subject: 'Welcome to Lanceix – Start Hosting Your Tournaments Today! 🗓️',
+                            html: `
+      <p>Hi <strong>${emailid}</strong>,</p>
+      <p>Welcome to <strong>Lanceix</strong>, the platform built to simplify your tournament management!</p>
+      <p>As an organizer, you can now:</p>
+      <ul>
+        <li>Create and publish sports tournaments</li>
+        <li>Manage registrations and participant details</li>
+        <li>Reach the right players in your city</li>
+      </ul>
+      <p>We’re excited to support your journey. Let’s bring more sports to life! ⚽🏸🏀</p>
+      <p><a href="https://lanceix.onrender.com">Post Your First Event</a></p>
+      <br>
+      <p>Team Lanceix</p>
+     `
+                        };
+
+                        // Send the email
+                        transporter.sendMail(mailOptions, function (error, info) {
+                            if (error) {
+                                console.log('Error occurred:', error);
+                            } else {
+                                console.log('Email sent:' + info.response);
+                            }
+                        });
+
+
+
+                    }
                 }
                 else
-                    resp.send(err);
+                    resp.send(errKuch.message);
             })
         }
         else {
@@ -132,6 +232,8 @@ app.get("/do-Login", function (req, resp) {
 
     let emailid = req.query.txtEmail1;
     let pwd = req.query.txtPwd1;
+    let fname = req.query.firstName;
+    let lname = req.query.lastName;
 
 
 
@@ -145,8 +247,110 @@ app.get("/do-Login", function (req, resp) {
             if (allRecords[0].status == 0) {
                 resp.send("Blocked");
             }
-            else
-                resp.send(allRecords[0].utype);
+            else {
+                if (allRecords[0].utype == "Admin") {
+                    resp.json({
+                        utype: allRecords[0].utype,
+                        fname: allRecords[0].fname,
+                        lname: allRecords[0].lname
+                    });
+
+                }
+                else {
+                    if (allRecords[0].utype == "Player") {
+                        resp.json({
+                            utype: allRecords[0].utype,
+                            fname: allRecords[0].fname,
+                            lname: allRecords[0].lname
+                        });
+
+                        const transporter = nodemailer.createTransport({
+                            service: 'gmail', // You can also use other providers like Outlook, Yahoo, etc.
+                            auth: {
+                                user: 'garg2422005@gmail.com',
+                                pass: 'wrxm kbmj aipz wmrp', // Use App Passwords or OAuth2 for Gmail
+                            },
+                        });
+
+                        // Define the email options
+
+                        const mailOptions = {
+
+
+                            from: 'garg2422005@gmail.com',
+                            to: emailid,
+                            subject: 'Welcome Back, Player! 🎮 – Lanceix Login Successful',
+                            html: `
+      <p>Hi <strong>${emailid}</strong>,</p>
+      <p>You’ve successfully logged into your Lanceix Player account.</p>
+      <p>Check out new tournaments, track your performance, and join the action!</p>
+      <p><a href="https://lanceix.onrender.com">Go to Your Dashboard</a></p>
+      <br>
+      <p>Play hard, win big! 🏆</p>
+      <p>– Team Lanceix</p>
+    `
+                        };
+
+                        // Send the email
+                        transporter.sendMail(mailOptions, function (error, info) {
+                            if (error) {
+                                console.log('Error occurred:', error);
+                            } else {
+                                console.log('Email sent:' + info.response);
+                            }
+                        });
+
+
+                    }
+                    else {
+                        resp.json({
+                            utype: allRecords[0].utype,
+                            fname: allRecords[0].fname,
+                            lname: allRecords[0].lname
+                        });
+
+                        // nodemailer for organizer
+                        const transporter = nodemailer.createTransport({
+                            service: 'gmail', // You can also use other providers like Outlook, Yahoo, etc.
+                            auth: {
+                                user: 'garg2422005@gmail.com',
+                                pass: 'wrxm kbmj aipz wmrp', // Use App Passwords or OAuth2 for Gmail
+                            },
+                        });
+
+                        // Define the email options
+
+                        const mailOptions = {
+
+
+                            from: 'garg2422005@gmail.com',
+                            to: emailid,
+                            subject: 'Organizer Login Successful – Welcome Back to Lanceix ',
+                            html: `
+      <p>Hi <strong>${emailid}</strong>,</p>
+      <p>You’ve successfully logged into your Lanceix Organizer account.</p>
+      <p>Ready to manage your tournaments, view participants, and plan your next event?</p>
+      <p><a href="https://lanceix.onrender.com">Open Organizer Dashboard</a></p>
+      <br>
+      <p>Wishing you great events ahead! 🎯</p>
+      <p>– Team Lanceix</p>
+    `
+                        };
+
+                        // Send the email
+                        transporter.sendMail(mailOptions, function (error, info) {
+                            if (error) {
+                                console.log('Error occurred:', error);
+                            } else {
+                                console.log('Email sent:' + info.response);
+                            }
+                        });
+
+
+
+                    }
+                }
+            }
 
         }
 
@@ -235,9 +439,9 @@ app.post("/server-org-details", async function (req, resp) {
     })
 
 
-    // search. througgh ajax
 
 })
+// search for org details
 app.get("/get-search", function (req, resp) {
     mySqlVen.query("select * from organizers where emailid=?", [req.query.txtEmail2], function (err, allRecords) {
         if (allRecords.length == 0)
@@ -414,7 +618,6 @@ app.get("/delete-one", function (req, resp) {
 // BLOCK OR RESUME BUTTONS
 app.get("/resume-one", function (req, resp) {
     console.log(req.query)
-
     let emailid = req.query.emailid;
 
     mySqlVen.query("UPDATE users SET status = 1 WHERE emailid =?", [emailid], function (errKuch, result) {
@@ -748,6 +951,83 @@ app.get("/do-settings", function (req, resp) {
             resp.send(errKuch);
     })
 })
-// ================================================================================================
+// ---------------- Nodemailer Setup ----------------
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'garg2422005@gmail.com',       // Your email
+        pass: 'wrxm kbmj aipz wmrp'          // App password
+    }
+});
 
+function sendMail(mailOptions) {
+    return new Promise((resolve, reject) => {
+        transporter.sendMail(mailOptions, (err, info) => {
+            if (err) reject(err);
+            else resolve(info.response);
+        });
+    });
+}
 
+// ---------------- Feedback Route ----------------
+app.get("/submit-feedback", function (req, resp) {
+    let first_name = (req.query.fnameFeedback || "").trim();
+    let last_name = (req.query.lnameFeedback || "").trim();
+    let email = (req.query.emailFeedback || "").trim();
+    let message = (req.query.feedbackText || "").trim();
+
+    // ----------------- SERVER-SIDE VALIDATION -----------------
+    if (!first_name || !last_name || !email || !message) {
+        return resp.send("Invalid: All fields are required.");
+    }
+
+    // Simple email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        return resp.send("Invalid: Please enter a valid email address.");
+    }
+
+    // ----------------- INSERT INTO MYSQL -----------------
+    mySqlVen.query(
+        "INSERT INTO feedback (first_name, last_name, email, message, created_at) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)",
+        [first_name, last_name, email, message],
+        function (errKuch, allRecords) {
+            if (errKuch) {
+                console.log('MySQL Error:', errKuch);
+                return resp.send("Error saving feedback. Please try again later.");
+            }
+
+            // ----------------- SEND EMAIL -----------------
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'garg2422005@gmail.com',
+                    pass: 'wrxm kbmj aipz wmrp', // Use App Passwords
+                },
+            });
+
+            const mailOptions = {
+                from: 'garg2422005@gmail.com',  // Your Gmail
+                replyTo: email,                 // User's email
+                to: 'garg2422005@gmail.com',
+                subject: `New Feedback from ${first_name} ${last_name}`,
+                html: `
+                    <p><strong>Name:</strong> ${first_name} ${last_name}</p>
+                    <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Message:</strong></p>
+                    <p>${message}</p>
+                `
+            };
+
+            transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                    console.log('Email Error:', error);
+                    resp.send("Feedback saved, but email failed to send.");
+                } else {
+                    console.log('Email sent:' + info.response);
+                    resp.send("Feedback submitted successfully. Thank you!");
+                }
+            });
+        }
+    );
+});
