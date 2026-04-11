@@ -727,7 +727,7 @@ app.post("/server-profile", async function (req, resp) {
     // for aadhar card pic 
     let fileName;
     let aadhar = "";
-    if (req.files != null) {
+if (req.files && req.files.aadhar) {
         //const myprompt = "Read the text on picture and tell all the information";
         //  const myprompt = "Read the text on picture in JSON format";
         fileName = req.files.aadhar.name;
