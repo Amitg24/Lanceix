@@ -78,7 +78,7 @@
       }
     }
 
-    function showUser() {
+    function showUer() {
       let activeUser = localStorage.getItem("activeUser");
       document.getElementById("txtEmail5").value = activeUser;
     }
@@ -92,11 +92,6 @@
         };
 
         $.ajax(obj).then(function (responseJsonAry) {
-
-        if (!responseJsonAry || responseJsonAry.length === 0) {
-    alert("No profile found!");
-    return;}
-    
           let data = responseJsonAry[0];
           $("#prev1").attr("src", data.acardpicurl);
           $("#prev2").attr("src", data.profilepicurl);
@@ -136,7 +131,7 @@
   </script>
 </head>
 
-<body onload="showUser();">
+<body onload="showUer();">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
