@@ -92,6 +92,11 @@
         };
 
         $.ajax(obj).then(function (responseJsonAry) {
+
+        if (!responseJsonAry || responseJsonAry.length === 0) {
+    alert("No profile found!");
+    return;}
+    
           let data = responseJsonAry[0];
           $("#prev1").attr("src", data.acardpicurl);
           $("#prev2").attr("src", data.profilepicurl);

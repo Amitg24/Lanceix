@@ -709,7 +709,7 @@ async function RajeshBansalKaChirag(imgurl) {
 app.post("/server-profile", async function (req, resp) {
     // for profile pic first
     let picurl = "";
-    if (req.files != null) //user wants to Update Profile Pic
+    if (req.files && req.files.profilePic) //user wants to Update Profile Pic
     {
         let fName = req.files.profilePic.name;
         let fullPath = __dirname + "/public/uploads/" + fName;
