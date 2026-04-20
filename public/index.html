@@ -45,7 +45,9 @@
 
 
         $.ajax(obj).then(
+          
           function (resp) {
+             console.log("Response",resp);
             if (resp == "Invalid") {
               if ($("#txtEmail").val() != "") {
                 if ($("#firstName").val() != "") {
@@ -79,7 +81,7 @@
                 location.href = "dash-Player.html";
               }
               else
-                if (resp.utype == "Organizer") {
+                if (resp  == "Organizer") {
                   localStorage.setItem("activeUser",$("#txtEmail").val())
 
                   location.href = "dash-organizer.html";
