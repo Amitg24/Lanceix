@@ -74,7 +74,7 @@
                 $("#errEmail").html("Email ID required").removeClass().addClass("text-danger");
             }
             else {
-              if (resp.utype == "Player") {
+              if (resp == "Player") {
                 localStorage.setItem("activeUser",$("#txtEmail").val())
                 location.href = "dash-Player.html";
               }
@@ -523,34 +523,45 @@
     }
   </style>
 
-  <!-- for bact to top -->
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const backToTopBtn = document.getElementById("backToTop");
-      const scrollToBottomBtn = document.getElementById("scrollToBottom");
+document.addEventListener("DOMContentLoaded", function () {
+  const backToTopBtn = document.getElementById("backToTop");
+  const scrollToBottomBtn = document.getElementById("scrollToBottom");
 
-      // Show buttons when scrolling
-      window.addEventListener("scroll", () => {
-        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-          backToTopBtn.style.display = "block";
-          scrollToBottomBtn.style.display = "block";
-        } else {
-          backToTopBtn.style.display = "none";
-          scrollToBottomBtn.style.display = "none";
-        }
-      });
+  // Show buttons when scrolling
+  window.addEventListener("scroll", () => {
+    let scrollTop = document.documentElement.scrollTop;
 
-      // Scroll to top
-      backToTopBtn.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
+    if (scrollTop > 200) {
+      if (backToTopBtn) backToTopBtn.style.display = "block";
+      if (scrollToBottomBtn) scrollToBottomBtn.style.display = "block";
+    } else {
+      if (backToTopBtn) backToTopBtn.style.display = "none";
+      if (scrollToBottomBtn) scrollToBottomBtn.style.display = "none";
+    }
+  });
 
-      // Scroll to bottom
-      scrollToBottomBtn.addEventListener("click", () => {
-        window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  // Scroll to top
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
       });
     });
-  </script>
+  }
+
+  // Scroll to bottom
+  if (scrollToBottomBtn) {
+    scrollToBottomBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,  
+        behavior: "smooth"
+      });
+    });
+  }
+});
+</script>
   <style>
     #backToTop,
     #scrollToBottom {

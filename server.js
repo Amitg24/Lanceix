@@ -361,13 +361,32 @@ app.get("/do-Login", function (req, resp) {
 app.get("/chk-email", function (req, resp) {
     let regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     let email = req.query.txtEmail;
-
     mySqlVen.query("select * from users where emailid=?", [email], function (err, allRecords) {
-        if (allRecords.length == 0 && regex.test(email) == true)
-            resp.send("Valid");
-        else
-            resp.send("Invalid Email ID");
-    })
+
+    if (err) {
+
+        console.error("SQL ERROR:", err.message);
+
+        return resp.status(500).send("Server Error");
+
+    }
+
+    if (!Array.isArray(allRecords) || allRecords.length === 0) {
+
+        return resp.send("Invalid");
+
+    }
+
+    return resp.send(allRecords[0].utype);
+
+});
+
+    // mySqlVen.query("select * from users where emailid=?", [email], function (err, allRecords) {
+    //     if (allRecords.length == 0 && regex.test(email) == true)
+    //         resp.send("Valid");
+    //     else
+    //         resp.send("Invalid");
+    // })
 })
 // -------------------------------------------
 // chk email for login
