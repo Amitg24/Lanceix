@@ -74,12 +74,12 @@
                 $("#errEmail").html("Email ID required").removeClass().addClass("text-danger");
             }
             else {
-              if (resp == "Player") {
+              if (resp.utype == "Player") {
                 localStorage.setItem("activeUser",$("#txtEmail").val())
                 location.href = "dash-Player.html";
               }
               else
-                if (resp == "Organizer") {
+                if (resp.utype == "Organizer") {
                   localStorage.setItem("activeUser",$("#txtEmail").val())
 
                   location.href = "dash-organizer.html";
@@ -234,7 +234,7 @@
       $("#chkwithdb").click(function () {
         let obj = {
           type: "get",
-          url: "/do-login",
+          url: "/do-Login",
           data: {
             txtEmail1: $("#txtEmail1").val(),
             txtPwd1: $("#txtPwd1").val(),
